@@ -16,6 +16,9 @@ const header = () => {
         <Link href="/viewclasses" className="px-2 hover:underline">
           View Classes
         </Link>
+        <Link href="/profile" className="px-2 hover:underline">
+          Profile
+        </Link>
       </nav>
       <button
         onClick={() => (data ? signOut() : signIn())}

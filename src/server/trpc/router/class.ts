@@ -64,32 +64,51 @@ export const classRouter = router({
       const task: Class = await ctx.prisma.class.create({ data: dataWithId });
       return task;
     }),
-  viewAll: protectedProcedure.query(({ ctx }) => {
-    return ctx.prisma.class.findMany({
-      orderBy: {
-        createdAt: "asc",
-      },
-      // include: {
-      //   participant: { include: { user: true } },
-      //   host: true,
-      // },
-      // select: {
-      //   host: { select: { image: true } },
-      //   participant: { select: { user: { select: { name: true } } } },
-      // },
-      select: {
-        ...defaultClassSelect,
-        participant: {
-          select: {
-            user: {
-              select: { name: true },
+  viewAll: protectedProcedure
+    .input(
+      z
+        .object({
+          category: z.string().optional(),
+          difficulty: z.string().optional(),
+        })
+        .optional()
+    )
+    .query(({ input, ctx }) => {
+      const where = {
+        category: input?.category,
+        difficulty: input?.difficulty,
+      };
+      return ctx.prisma.class.findMany({
+        orderBy: {
+          createdAt: "asc",
+        },
+        where,
+        // include: {
+        //   participant: { include: { user: true } },
+        //   host: true,
+        // },
+        // select: {
+        //   host: { select: { image: true } },
+        //   participant: { select: { user: { select: { name: true } } } },
+        // },
+        select: {
+          ...defaultClassSelect,
+          participant: {
+            select: {
+              user: {
+                select: { name: true },
+              },
+            },
+          },
+          host: { select: { image: true, name: true } },
+          _count: {
+            select: {
+              participant: true,
             },
           },
         },
-        host: { select: { image: true, name: true } },
-      },
-    });
-  }),
+      });
+    }),
   addParticipant: protectedProcedure
     .input(z.object({ classId: z.string() }))
     .mutation(async ({ input, ctx }) => {
@@ -131,6 +150,24 @@ export const classRouter = router({
             },
           },
           host: { select: { image: true, name: true } },
+        },
+      });
+    }),
+  getClassByUser: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ input, ctx }) => {
+      return ctx.prisma.participant.findMany({
+        where: { userId: input.id },
+        select: {
+          class: {
+            select: {
+              ...defaultClassSelect,
+              _count: { select: { participant: true } },
+              host: {
+                select: { name: true, image: true },
+              },
+            },
+          },
         },
       });
     }),

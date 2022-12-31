@@ -4,7 +4,7 @@ import { trpc } from "../utils/trpc";
 import Link from "next/link";
 interface classCardProps {
   data: {
-    participant: {
+    participant?: {
       user: {
         name: string | null;
       };
@@ -26,6 +26,9 @@ interface classCardProps {
     time: string;
     title: string;
     description: string;
+    _count: {
+      participant: number;
+    };
   };
 }
 
@@ -50,6 +53,7 @@ const classCard: NextPage<classCardProps> = ({ data }) => {
     description,
     date,
     host: { image, name: hostName },
+    _count,
   } = data;
   return (
     <div className=" flex h-[300px] w-[250px] flex-col gap-y-2 border border-black bg-neutral-100 p-1">
@@ -77,7 +81,9 @@ const classCard: NextPage<classCardProps> = ({ data }) => {
       <p className="bg-neutral-50 text-gray-600">{description}</p>
       <div className="flex justify-between">
         <div className="flex items-center gap-1">
-          <p>{capacity}</p>
+          <p>
+            {_count.participant}/{capacity}
+          </p>
           <img src="personicon.png" alt="icon" className="h-4" />
         </div>
         <p>{date}</p>

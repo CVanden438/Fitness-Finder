@@ -100,7 +100,7 @@ const index = () => {
       <div className="">
         <p>Interested Users:</p>
         {participant?.map((p) => {
-          return <p>{p.user.name}</p>;
+          return <p key={p.user.id}>{p.user.name}</p>;
         })}
       </div>
     </div>
