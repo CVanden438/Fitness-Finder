@@ -2,6 +2,7 @@ import React from "react";
 import { AppProps } from "next/app";
 import { type NextPage } from "next";
 import Header from "./header";
+import Sidebar from "./sidebar";
 type Props = {
   children?: React.ReactNode;
 };

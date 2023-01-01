@@ -56,12 +56,12 @@ const classCard: NextPage<classCardProps> = ({ data }) => {
     _count,
   } = data;
   return (
-    <div className=" flex h-[300px] w-[250px] flex-col gap-y-2 border border-black bg-neutral-100 p-1">
+    <div className=" flex h-[300px] w-[250px] flex-col gap-y-2 rounded-lg border border-black bg-slate-50 p-1 shadow-lg">
       <div className="flex gap-x-2">
         <img
           src={image ? image : "default"}
           alt="test"
-          className="aspect-square w-[40px] rounded-full"
+          className="w-[40px] rounded-full"
         />
         <div className="">
           <p className="font-bold">{hostName}</p>

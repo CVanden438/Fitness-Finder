@@ -7,11 +7,8 @@ import { useSession } from "next-auth/react";
 import ClassCard from "../../components/classCard";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Sidebar from "../../components/sidebar";
 
-interface filters {
-  category?: string;
-  difficulty?: string;
-}
 const initialQuery: filters = {};
 const viewClasses = () => {
   const router = useRouter();
@@ -27,43 +24,12 @@ const viewClasses = () => {
   }
   return (
     <>
-      <div className=" grid grid-cols-5 p-10">
+      <Sidebar queryString={queryString} setQueryString={setQueryString} />
+      <div className="ml-[200px] grid grid-cols-5 p-10">
         {classData.map((c) => {
           return <ClassCard key={c.id} data={c} />;
         })}
       </div>
-      <button
-        onClick={() => {
-          router.push({
-            pathname: "/viewclasses",
-            query: { ...queryString, category: "weights" },
-          });
-          setQueryString({ ...queryString, category: "weights" });
-        }}
-      >
-        Test Category
-      </button>
-      <button
-        onClick={() => {
-          router.push({
-            pathname: "/viewclasses",
-            query: { ...queryString, difficulty: "advanced" },
-          });
-          setQueryString({ ...queryString, difficulty: "advanced" });
-        }}
-      >
-        Test Difficulty
-      </button>
-      <button
-        onClick={() => {
-          router.push({
-            pathname: "/viewclasses",
-          });
-          setQueryString(initialQuery);
-        }}
-      >
-        Clear Filters
-      </button>
     </>
   );
 };
