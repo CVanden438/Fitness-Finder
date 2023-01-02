@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { getServerAuthSession } from "../../../server/common/get-server-auth-session";
 import { trpc } from "../../../utils/trpc";
-
+import ClassComments from "../../../components/classComments";
 enum difficultyColour {
   beginner = "bg-green-500",
   intermediate = "bg-orange-500",
@@ -129,6 +129,10 @@ const index = () => {
           {participant?.map((p) => {
             return <p key={p.user.id}>{p.user.name}</p>;
           })}
+        </div>
+        <div className="">
+          Comments:
+          <ClassComments classId={id} />
         </div>
       </div>
     </div>

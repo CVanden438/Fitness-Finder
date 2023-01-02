@@ -29,6 +29,7 @@ model Class {
   title       String
   description String
   participant Participant[]
+  comments Comment[]
   host        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
@@ -43,6 +44,18 @@ model Participant {
   @@id([userId, classId])
   @@index([userId])
   @@index([classId])
+}
+
+model Comment {
+  id          String @id @default(cuid())
+  userId      String
+  classId     String
+  text        String
+  createdAt   DateTime      @default(now())
+  user        User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  class       Class @relation(fields: [classId], references: [id],onDelete: Cascade)
+  @@index([classId])
+  @@index([userId])
 }
 
 model Task {
@@ -96,6 +109,7 @@ model User {
   tasks         Task[]
   classes       Class[]
   participant   Participant[]
+  comments Comment[]
 }
 
 model VerificationToken {

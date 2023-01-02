@@ -19,14 +19,19 @@ const viewClasses = () => {
   );
   const { data: sesh } = useSession();
   const [queryString, setQueryString] = useState(initialQuery);
-  if (isLoading || !classData) {
-    return <p>Loading...</p>;
-  }
+  // if (isLoading || !classData) {
+  //   return <p>Loading...</p>;
+  // }
   return (
     <>
-      <Sidebar queryString={queryString} setQueryString={setQueryString} />
+      <Sidebar
+        queryString={queryString}
+        setQueryString={setQueryString}
+        category={category}
+        difficulty={difficulty}
+      />
       <div className="ml-[200px] grid grid-cols-5 p-10">
-        {classData.map((c) => {
+        {classData?.map((c) => {
           return <ClassCard key={c.id} data={c} />;
         })}
       </div>

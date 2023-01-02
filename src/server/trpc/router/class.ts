@@ -83,14 +83,6 @@ export const classRouter = router({
           createdAt: "asc",
         },
         where,
-        // include: {
-        //   participant: { include: { user: true } },
-        //   host: true,
-        // },
-        // select: {
-        //   host: { select: { image: true } },
-        //   participant: { select: { user: { select: { name: true } } } },
-        // },
         select: {
           ...defaultClassSelect,
           participant: {
@@ -170,5 +162,12 @@ export const classRouter = router({
           },
         },
       });
+    }),
+  addComment: protectedProcedure
+    .input(z.object({ classId: z.string(), text: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const id = ctx.session.user.id;
+      const dataWithId = { userId: id, ...input };
+      return ctx.prisma.comment.create({ data: dataWithId });
     }),
 });
