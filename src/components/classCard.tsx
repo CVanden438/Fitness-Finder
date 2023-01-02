@@ -57,11 +57,11 @@ const classCard: NextPage<classCardProps> = ({ data }) => {
   } = data;
   return (
     <div className=" flex h-[300px] w-[250px] flex-col gap-y-2 rounded-lg border border-black bg-slate-50 p-1 shadow-lg">
-      <div className="flex gap-x-2">
+      <div className="flex items-center gap-x-2">
         <img
           src={image ? image : "default"}
           alt="test"
-          className="w-[40px] rounded-full"
+          className="h-[40px] rounded-full"
         />
         <div className="">
           <p className="font-bold">{hostName}</p>

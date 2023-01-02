@@ -63,8 +63,6 @@ const AuthShowcase: React.FC = () => {
     undefined, // no input
     { enabled: sessionData?.user !== undefined }
   );
-  const addTask = trpc.example.addTask.useMutation({});
-  console.log(sessionData);
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <p className="text-center text-2xl text-white">
@@ -76,12 +74,6 @@ const AuthShowcase: React.FC = () => {
         onClick={sessionData ? () => signOut() : () => signIn()}
       >
         {sessionData ? "Sign out" : "Sign in"}
-      </button>
-      <button
-        className="bg-red-500 text-white"
-        onClick={() => addTask.mutateAsync({ name: "test", completed: true })}
-      >
-        Add Task
       </button>
     </div>
   );

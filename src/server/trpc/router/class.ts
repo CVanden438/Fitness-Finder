@@ -32,18 +32,6 @@ export const classRouter = router({
   getAll: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.example.findMany();
   }),
-  addTask: protectedProcedure
-    .input(z.object({ name: z.string(), completed: z.boolean() }))
-    .mutation(async ({ input, ctx }) => {
-      const id = ctx.session.user.id;
-      const task = await ctx.prisma.task.create({
-        data: { userId: id, name: input.name, completed: input.completed },
-        // userId: input.id,
-        // name: input.name,
-        // completed: input.completed,
-      });
-      return task;
-    }),
   addClass: protectedProcedure
     .input(
       z.object({
@@ -64,7 +52,7 @@ export const classRouter = router({
       const task: Class = await ctx.prisma.class.create({ data: dataWithId });
       return task;
     }),
-  viewAll: protectedProcedure
+  viewAll: publicProcedure
     .input(
       z
         .object({
@@ -115,14 +103,14 @@ export const classRouter = router({
         throw new Error("there was an error");
       }
     }),
-  getParticipantsByClass: protectedProcedure
+  getParticipantsByClass: publicProcedure
     .input(z.object({ classId: z.string() }))
     .query(async ({ input, ctx }) => {
       return ctx.prisma.participant.findMany({
         where: { classId: input.classId },
       });
     }),
-  getSingleClass: protectedProcedure
+  getSingleClass: publicProcedure
     .input(z.object({ classId: z.string() }))
     .query(async ({ input, ctx }) => {
       return ctx.prisma.class.findUnique({
@@ -132,7 +120,7 @@ export const classRouter = router({
           participant: {
             select: {
               user: {
-                select: { name: true, id: true },
+                select: { name: true, id: true, image: true },
               },
             },
           },
@@ -164,10 +152,24 @@ export const classRouter = router({
       });
     }),
   addComment: protectedProcedure
-    .input(z.object({ classId: z.string(), text: z.string() }))
+    .input(z.object({ classId: z.string(), text: z.string().max(100) }))
     .mutation(async ({ ctx, input }) => {
       const id = ctx.session.user.id;
       const dataWithId = { userId: id, ...input };
       return ctx.prisma.comment.create({ data: dataWithId });
+    }),
+  getComments: publicProcedure
+    .input(z.object({ classId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      return ctx.prisma.comment.findMany({
+        where: { classId: input.classId },
+        orderBy: { createdAt: "desc" },
+        select: {
+          id: true,
+          text: true,
+          createdAt: true,
+          user: { select: { name: true, image: true } },
+        },
+      });
     }),
 });

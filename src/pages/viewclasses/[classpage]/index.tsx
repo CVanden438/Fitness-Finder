@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { getServerAuthSession } from "../../../server/common/get-server-auth-session";
 import { trpc } from "../../../utils/trpc";
 import ClassComments from "../../../components/classComments";
+import Tooltip from "../../../components/ui/Tooltip";
 enum difficultyColour {
   beginner = "bg-green-500",
   intermediate = "bg-orange-500",
@@ -67,13 +68,13 @@ const index = () => {
   };
   return (
     <div className="flex justify-center ">
-      <div className="mt-10 flex w-1/2 rounded-lg border border-black bg-slate-50 p-10 shadow-lg">
+      <div className="mt-10 flex w-3/5 rounded-lg border border-black bg-slate-50 p-6 shadow-lg">
         <div className="flex w-3/4 flex-col gap-2 border-r-[1px] border-black pr-6">
           <div className="flex gap-6 border-b border-black pb-2">
             <img
               src={host.image ? host.image : "default"}
               alt="hostImage"
-              className="w-14 rounded-full"
+              className="h-14 rounded-full"
             />
             <div className="">
               <p className="text-xl font-bold">{host.name}</p>
@@ -123,36 +124,52 @@ const index = () => {
           >
             {hasJoined ? "Class Joined!" : "Join Class"}
           </button>
-        </div>
-        <div className="pl-6">
           <p>Interested Users:</p>
-          {participant?.map((p) => {
-            return <p key={p.user.id}>{p.user.name}</p>;
-          })}
+          <div className="flex">
+            {participant?.map((p) => {
+              return (
+                // <div
+                //   className="group relative inline-block hover:cursor-pointer"
+                //   key={p.user.id}
+                // >
+                //   <img
+                //     src={p.user.image ? p.user.image : "default"}
+                //     className="h-[20px] rounded-full"
+                //   ></img>
+                //   <p className="z-100 invisible absolute bg-black text-white group-hover:visible">
+                //     {p.user.name}
+                //   </p>
+                // </div>
+                <Tooltip text={p.user.name} key={p.user.id}>
+                  <img
+                    src={p.user.image || "default"}
+                    className="h-[20px] rounded-full"
+                  ></img>
+                </Tooltip>
+              );
+            })}
+          </div>
         </div>
-        <div className="">
-          Comments:
-          <ClassComments classId={id} />
-        </div>
+        <ClassComments classId={id} />
       </div>
     </div>
   );
 };
-export const getServerSideProps: GetServerSideProps = async (
-  ctx: GetServerSidePropsContext
-) => {
-  const session = await getServerAuthSession(ctx);
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
+// export const getServerSideProps: GetServerSideProps = async (
+//   ctx: GetServerSidePropsContext
+// ) => {
+//   const session = await getServerAuthSession(ctx);
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: "/",
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  return {
-    props: { session },
-  };
-};
+//   return {
+//     props: { session },
+//   };
+// };
 export default index;

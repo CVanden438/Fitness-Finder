@@ -19,9 +19,6 @@ const viewClasses = () => {
   );
   const { data: sesh } = useSession();
   const [queryString, setQueryString] = useState(initialQuery);
-  // if (isLoading || !classData) {
-  //   return <p>Loading...</p>;
-  // }
   return (
     <>
       <Sidebar
@@ -38,22 +35,22 @@ const viewClasses = () => {
     </>
   );
 };
-export const getServerSideProps: GetServerSideProps = async (
-  ctx: GetServerSidePropsContext
-) => {
-  const session = await getServerAuthSession(ctx);
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
+// export const getServerSideProps: GetServerSideProps = async (
+//   ctx: GetServerSidePropsContext
+// ) => {
+//   const session = await getServerAuthSession(ctx);
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: "/",
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  return {
-    props: { session },
-  };
-};
+//   return {
+//     props: { session },
+//   };
+// };
 
 export default viewClasses;

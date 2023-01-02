@@ -1,5 +1,7 @@
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useSession } from "next-auth/react";
 import * as React from "react";
+import { getServerAuthSession } from "../server/common/get-server-auth-session";
 import { trpc } from "../utils/trpc";
 
 // interface input {
@@ -345,5 +347,22 @@ const FitnessClassForm = ({}) => {
       <button onClick={() => console.log(errors)}>Show Errors</button>
     </>
   );
+};
+export const getServerSideProps: GetServerSideProps = async (
+  ctx: GetServerSidePropsContext
+) => {
+  const session = await getServerAuthSession(ctx);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
 };
 export default FitnessClassForm;
