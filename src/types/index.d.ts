@@ -3,4 +3,5 @@ type difficultiesArr = ["Beginner", "Intermediate", "Advanced"];
 interface filters {
   category?: string;
   difficulty?: string;
+  search?: string;
 }

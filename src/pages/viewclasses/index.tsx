@@ -8,13 +8,13 @@ import ClassCard from "../../components/classCard";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Sidebar from "../../components/sidebar";
-
+import SearchBar from "../../components/searchBar";
 const initialQuery: filters = {};
 const viewClasses = () => {
   const router = useRouter();
-  const { category, difficulty } = router.query as filters;
+  const { category, difficulty, search } = router.query as filters;
   const { data: classData, isLoading } = trpc.class.viewAll.useQuery(
-    { category, difficulty },
+    { category, difficulty, search },
     { refetchOnWindowFocus: false }
   );
   const { data: sesh } = useSession();
@@ -27,8 +27,9 @@ const viewClasses = () => {
         category={category}
         difficulty={difficulty}
       />
+      <SearchBar setQueryString={setQueryString} search={search} />
       {isLoading && <img src="loader.svg" alt="" className="ml-[200px]" />}
-      <div className="ml-[200px] grid grid-cols-5 p-10">
+      <div className="ml-[200px] grid grid-cols-5 gap-6 p-6">
         {classData?.map((c) => {
           return <ClassCard key={c.id} data={c} />;
         })}

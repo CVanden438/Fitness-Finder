@@ -58,6 +58,7 @@ export const classRouter = router({
         .object({
           category: z.string().optional(),
           difficulty: z.string().optional(),
+          search: z.string().optional(),
         })
         .optional()
     )
@@ -65,6 +66,7 @@ export const classRouter = router({
       const where = {
         category: input?.category,
         difficulty: input?.difficulty,
+        host: { name: { contains: input?.search } },
       };
       return ctx.prisma.class.findMany({
         orderBy: {

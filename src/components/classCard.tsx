@@ -56,12 +56,15 @@ const classCard: NextPage<classCardProps> = ({ data }) => {
     _count,
   } = data;
   return (
-    <div className=" flex h-[300px] w-[250px] flex-col gap-y-2 rounded-lg border border-black bg-slate-50 p-1 shadow-lg">
+    <div className=" flex w-[250px] flex-col gap-y-2 rounded-lg border border-black bg-slate-50 p-1 shadow-lg shadow-gray-400">
       <div className="flex items-center gap-x-2">
         <img
           src={image ? image : "default"}
           alt="test"
-          className="h-[40px] rounded-full"
+          className="rounded-full"
+          height={40}
+          width={40}
+          loading="lazy"
         />
         <div className="">
           <p className="font-bold">{hostName}</p>
@@ -78,13 +81,20 @@ const classCard: NextPage<classCardProps> = ({ data }) => {
           {difficulty}
         </p>
       </div>
-      <p className="bg-neutral-50 text-gray-600">{description}</p>
+      <p className="truncate text-gray-600">{description}</p>
+      <p>Price: £{price}</p>
       <div className="flex justify-between">
         <div className="flex items-center gap-1">
           <p>
             {_count.participant}/{capacity}
           </p>
-          <img src="personicon.png" alt="icon" className="h-4" />
+          <img
+            src="personicon.png"
+            alt="icon"
+            height={16}
+            width={16}
+            loading="lazy"
+          />
         </div>
         <p>{date}</p>
       </div>
@@ -93,7 +103,7 @@ const classCard: NextPage<classCardProps> = ({ data }) => {
       </button> */}
       <Link
         href={`/viewclasses/${id}`}
-        className="bg-slate-700 text-center text-white"
+        className="rounded-lg bg-slate-700 text-center text-white"
       >
         View Class
       </Link>

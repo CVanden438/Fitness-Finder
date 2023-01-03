@@ -21,8 +21,6 @@ const sidebar: React.FC<propType> = ({
   category,
   difficulty,
 }) => {
-  const [categoryExpanded, setCategoryExpanded] = useState(false);
-  const [difficultyExpanded, setDifficultyExpanded] = useState(false);
   const handleClick = (filterType: string, param: string) => {
     router.push({
       pathname: "/viewclasses",
@@ -37,20 +35,11 @@ const sidebar: React.FC<propType> = ({
     setQueryString(initialQuery);
   };
   return (
-    <div className="fixed flex h-screen w-[200px] flex-col bg-slate-400">
-      <p
-        className="bg-slate-600 text-white"
-        onClick={() => {
-          setCategoryExpanded(!categoryExpanded);
-        }}
-      >
+    <div className="fixed mt-16 flex h-screen w-[200px] flex-col items-center border-r border-black bg-slate-50">
+      <p className="mt-2 w-4/5 rounded-lg border border-black bg-slate-300 text-center text-lg font-bold">
         Category
       </p>
-      <ul
-        className={`${
-          !categoryExpanded ? "hidden" : "block"
-        } animate-growDown origin-top`}
-      >
+      <ul className={`mt-2 flex w-full flex-col items-center gap-2`}>
         {categories.map((c) => {
           return (
             <li
@@ -58,8 +47,8 @@ const sidebar: React.FC<propType> = ({
               onClick={() => {
                 handleClick("category", c);
               }}
-              className={`bg-slate-50 hover:cursor-pointer hover:bg-slate-200 ${
-                category === c ? "bg-slate-200" : "bg-slat-50"
+              className={`w-3/4 rounded-lg bg-slate-50 text-center hover:cursor-pointer hover:bg-slate-200 ${
+                category === c ? "bg-slate-200" : "bg-slate-50"
               }`}
             >
               {c}
@@ -67,19 +56,10 @@ const sidebar: React.FC<propType> = ({
           );
         })}
       </ul>
-      <p
-        className="bg-slate-600 text-white"
-        onClick={() => {
-          setDifficultyExpanded(!difficultyExpanded);
-        }}
-      >
+      <p className="mt-2 w-4/5 rounded-lg border border-black bg-slate-300 text-center text-lg font-bold">
         Difficulty
       </p>
-      <ul
-        className={`${
-          !difficultyExpanded ? "hidden" : "block"
-        } animate-growDown origin-top`}
-      >
+      <ul className={`mt-2 flex w-full flex-col items-center gap-2`}>
         {difficulties.map((d) => {
           return (
             <li
@@ -87,7 +67,7 @@ const sidebar: React.FC<propType> = ({
               onClick={() => {
                 handleClick("difficulty", d);
               }}
-              className={`bg-slate-50 hover:cursor-pointer hover:bg-slate-200 ${
+              className={`w-3/4 rounded-lg bg-slate-50 text-center hover:cursor-pointer hover:bg-slate-200 ${
                 difficulty === d ? "bg-slate-200" : "bg-slate-50"
               }`}
             >
@@ -100,7 +80,7 @@ const sidebar: React.FC<propType> = ({
         onClick={() => {
           handleClearFilters();
         }}
-        className="bg-slate-500"
+        className="mt-4 w-4/5 rounded-lg border border-black bg-slate-400 hover:bg-slate-600 hover:text-white"
       >
         Clear Filters
       </button>

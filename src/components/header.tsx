@@ -4,7 +4,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 const header = () => {
   const { data } = useSession();
   return (
-    <header className="flex items-center justify-between bg-gray-800 p-4 text-white">
+    <header className="fixed flex h-16 w-full items-center justify-between border-b border-black bg-slate-50 p-4 font-bold">
       <img src="" alt="Logo" className="h-8" />
       <nav>
         <Link href="/" className="px-2 hover:underline">
