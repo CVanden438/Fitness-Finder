@@ -1,8 +1,10 @@
+import { signIn, useSession } from "next-auth/react";
 import React, { useState } from "react";
 import { trpc } from "../utils/trpc";
 
 const classComments = ({ classId }: { classId: string }) => {
   const [input, setInput] = useState("");
+  const { data: sesh } = useSession();
   const addComment = trpc.class.addComment.useMutation({});
   const { data: comments, refetch } = trpc.class.getComments.useQuery(
     { classId },
@@ -10,6 +12,9 @@ const classComments = ({ classId }: { classId: string }) => {
   );
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!sesh) {
+      signIn();
+    }
     await addComment.mutateAsync({ text: input, classId });
     refetch();
     setInput("");

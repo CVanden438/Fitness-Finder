@@ -1,5 +1,5 @@
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { useSession } from "next-auth/react";
+import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { getServerAuthSession } from "../../../server/common/get-server-auth-session";
@@ -12,7 +12,7 @@ enum difficultyColour {
   advanced = "bg-red-500",
 }
 
-const index = () => {
+const index: NextPage = () => {
   const [hasJoined, setHasJoined] = useState(false);
   const { data: sesh } = useSession();
   const { classpage } = useRouter().query as {
@@ -53,6 +53,9 @@ const index = () => {
     participant,
   } = classData;
   const handleJoinClass = async (id: string) => {
+    if (!sesh) {
+      signIn();
+    }
     for (let i of classData.participant) {
       if (i.user.id === sesh?.user?.id) {
         console.log("already signed up");

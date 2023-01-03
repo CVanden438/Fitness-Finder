@@ -27,6 +27,7 @@ const viewClasses = () => {
         category={category}
         difficulty={difficulty}
       />
+      {isLoading && <img src="loader.svg" alt="" className="ml-[200px]" />}
       <div className="ml-[200px] grid grid-cols-5 p-10">
         {classData?.map((c) => {
           return <ClassCard key={c.id} data={c} />;

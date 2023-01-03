@@ -21,6 +21,8 @@ const sidebar: React.FC<propType> = ({
   category,
   difficulty,
 }) => {
+  const [categoryExpanded, setCategoryExpanded] = useState(false);
+  const [difficultyExpanded, setDifficultyExpanded] = useState(false);
   const handleClick = (filterType: string, param: string) => {
     router.push({
       pathname: "/viewclasses",
@@ -36,8 +38,19 @@ const sidebar: React.FC<propType> = ({
   };
   return (
     <div className="fixed flex h-screen w-[200px] flex-col bg-slate-400">
-      <p className="bg-slate-600 text-white">Category</p>
-      <ul>
+      <p
+        className="bg-slate-600 text-white"
+        onClick={() => {
+          setCategoryExpanded(!categoryExpanded);
+        }}
+      >
+        Category
+      </p>
+      <ul
+        className={`${
+          !categoryExpanded ? "hidden" : "block"
+        } animate-growDown origin-top`}
+      >
         {categories.map((c) => {
           return (
             <li
@@ -54,8 +67,19 @@ const sidebar: React.FC<propType> = ({
           );
         })}
       </ul>
-      <p className="bg-slate-600 text-white">Difficulty</p>
-      <ul>
+      <p
+        className="bg-slate-600 text-white"
+        onClick={() => {
+          setDifficultyExpanded(!difficultyExpanded);
+        }}
+      >
+        Difficulty
+      </p>
+      <ul
+        className={`${
+          !difficultyExpanded ? "hidden" : "block"
+        } animate-growDown origin-top`}
+      >
         {difficulties.map((d) => {
           return (
             <li
