@@ -6,22 +6,32 @@ const initialQuery: filters = {};
 interface props {
   setQueryString: React.Dispatch<React.SetStateAction<filters>>;
   search?: string;
+  queryString: filters;
 }
-const searchBar: React.FC<props> = ({ setQueryString, search }) => {
+const searchBar: React.FC<props> = ({
+  setQueryString,
+  search,
+  queryString,
+}) => {
   const [searchInput, setSearchInput] = useState("");
   const router = useRouter();
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let search = searchInput;
-    setQueryString(initialQuery);
+    // setQueryString(initialQuery);
     router.push({
       pathname: "/viewclasses",
-      query: { search },
+      query: { ...queryString, search },
     });
+    setQueryString({ ...queryString, search: search });
   };
   const handleCancel = () => {
     setSearchInput("");
-    setQueryString(initialQuery);
+    router.push({
+      pathname: "/viewclasses",
+      query: { ...queryString, search: undefined },
+    });
+    setQueryString({ ...queryString, search: undefined });
   };
   return (
     <form

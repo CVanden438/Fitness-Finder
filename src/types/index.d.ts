@@ -4,4 +4,5 @@ interface filters {
   category?: string;
   difficulty?: string;
   search?: string;
+  page?: number;
 }

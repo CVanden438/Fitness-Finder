@@ -1,32 +1,139 @@
 import React, { useState } from "react";
 import { trpc } from "../../utils/trpc";
-import { Class } from "@prisma/client";
-import { GetServerSideProps, GetServerSidePropsContext } from "next/types";
-import { getServerAuthSession } from "../../server/common/get-server-auth-session";
 import { useSession } from "next-auth/react";
 import ClassCard from "../../components/classCard";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import Sidebar from "../../components/sidebar";
 import SearchBar from "../../components/searchBar";
-const currDate = new Date().toISOString().slice(0, 10);
+// const LIMIT = 4;
+// const initialQuery: filters = {};
+// const viewClasses = () => {
+//   const [upcoming, setUpcoming] = useState(true);
+//   const [cursor, setCursor] = useState<undefined | string>(undefined);
+//   const router = useRouter();
+//   const { category, difficulty, search, page } = router.query as filters;
+//   // USEINFINITEQUERY NOT ON TRPC??
+//   const { data: classData, isLoading } = trpc.class.viewAll.useQuery(
+//     { category, difficulty, search, limit: LIMIT, cursorId: cursor, upcoming },
+//     {
+//       refetchOnWindowFocus: false,
+//     }
+//   );
+//   const { data: sesh } = useSession();
+//   const [queryString, setQueryString] = useState(initialQuery);
+//   const handleLoadMore = () => {
+//     setCursor(classData?.nextCursor);
+//   };
+//   // const pastClasses = classData?.items.filter((c) => {
+//   //   return c.date < currDate;
+//   // });
+//   // const upcomingClasses = classData?.items.filter((c) => {
+//   //   return c.date >= currDate;
+//   // });
+//   return (
+//     <>
+//       <Sidebar
+//         queryString={queryString}
+//         setQueryString={setQueryString}
+//         category={category}
+//         difficulty={difficulty}
+//         search={search}
+//       />
+//       <SearchBar
+//         setQueryString={setQueryString}
+//         search={search}
+//         queryString={queryString}
+//       />
+//       <div className="mt-4 flex justify-center">
+//         <button
+//           onClick={() => {
+//             setCursor(undefined);
+//             setUpcoming(false);
+//           }}
+//           className={`${
+//             !upcoming ? "bg-slate-400" : "bg-slate-200 hover:bg-slate-300"
+//           } rounded-l-full border-r border-black  p-2`}
+//         >
+//           Previous Classes
+//         </button>
+//         <button
+//           onClick={() => {
+//             setCursor(undefined);
+//             setUpcoming(true);
+//           }}
+//           className={`${
+//             upcoming ? "bg-slate-400" : "bg-slate-200 hover:bg-slate-300"
+//           } rounded-r-full p-2 `}
+//         >
+//           Upcoming Classes
+//         </button>
+//       </div>
+//       {isLoading && <img src="loader.svg" alt="" className="ml-[200px]" />}
+//       <div className="ml-[200px] grid grid-cols-5 gap-6 p-6">
+//         {upcoming
+//           ? classData?.items.map((c) => {
+//               return <ClassCard key={c.id} data={c} />;
+//             })
+//           : classData?.items.map((c) => {
+//               return <ClassCard key={c.id} data={c} />;
+//             })}
+//       </div>
+//       <button className="ml-[400px]">Prev Page</button>
+//       {classData?.nextCursor && (
+//         <button onClick={handleLoadMore} className="ml-[400px]">
+//           Next Page
+//         </button>
+//       )}
+//     </>
+//   );
+// };
+
+const LIMIT = 4;
 const initialQuery: filters = {};
 const viewClasses = () => {
+  const [upcoming, setUpcoming] = useState(true);
   const router = useRouter();
-  const { category, difficulty, search } = router.query as filters;
+  const { category, difficulty, search, page } = router.query as filters;
+  // USEINFINITEQUERY NOT ON TRPC??
   const { data: classData, isLoading } = trpc.class.viewAll.useQuery(
-    { category, difficulty, search },
-    { refetchOnWindowFocus: false }
+    { category, difficulty, search, limit: LIMIT, upcoming, page },
+    {
+      refetchOnWindowFocus: false,
+    }
   );
   const { data: sesh } = useSession();
   const [queryString, setQueryString] = useState(initialQuery);
-  const [upcoming, setUpcoming] = useState(true);
-  const pastClasses = classData?.filter((c) => {
-    return c.date < currDate;
-  });
-  const upcomingClasses = classData?.filter((c) => {
-    return c.date >= currDate;
-  });
+  // const pastClasses = classData?.items.filter((c) => {
+  //   return c.date < currDate;
+  // });
+  // const upcomingClasses = classData?.items.filter((c) => {
+  //   return c.date >= currDate;
+  // });
+  const handlePageChange = (direction: number) => {
+    if (direction === 0) {
+      if (classData) {
+        console.log(classData.count);
+        if (
+          Number(page) === Math.ceil(classData.count / LIMIT) ||
+          classData.count <= LIMIT
+        ) {
+          return;
+        }
+      }
+      router.push({
+        pathname: "/viewclasses",
+        query: { ...queryString, page: page ? Number(page) + 1 : 2 },
+      });
+    } else {
+      if (Number(page) === 1 || page == undefined) {
+        return;
+      }
+      router.push({
+        pathname: "/viewclasses",
+        query: { ...queryString, page: Number(page) - 1 },
+      });
+    }
+  };
   return (
     <>
       <Sidebar
@@ -34,11 +141,22 @@ const viewClasses = () => {
         setQueryString={setQueryString}
         category={category}
         difficulty={difficulty}
+        search={search}
       />
-      <SearchBar setQueryString={setQueryString} search={search} />
+      <SearchBar
+        setQueryString={setQueryString}
+        search={search}
+        queryString={queryString}
+      />
       <div className="mt-4 flex justify-center">
         <button
-          onClick={() => setUpcoming(false)}
+          onClick={() => {
+            setUpcoming(false);
+            router.push({
+              pathname: "/viewclasses",
+              query: { ...queryString, page: 1 },
+            });
+          }}
           className={`${
             !upcoming ? "bg-slate-400" : "bg-slate-200 hover:bg-slate-300"
           } rounded-l-full border-r border-black  p-2`}
@@ -46,7 +164,13 @@ const viewClasses = () => {
           Previous Classes
         </button>
         <button
-          onClick={() => setUpcoming(true)}
+          onClick={() => {
+            setUpcoming(true);
+            router.push({
+              pathname: "/viewclasses",
+              query: { ...queryString, page: 1 },
+            });
+          }}
           className={`${
             upcoming ? "bg-slate-400" : "bg-slate-200 hover:bg-slate-300"
           } rounded-r-full p-2 `}
@@ -57,32 +181,21 @@ const viewClasses = () => {
       {isLoading && <img src="loader.svg" alt="" className="ml-[200px]" />}
       <div className="ml-[200px] grid grid-cols-5 gap-6 p-6">
         {upcoming
-          ? upcomingClasses?.map((c) => {
+          ? classData?.items.map((c) => {
               return <ClassCard key={c.id} data={c} />;
             })
-          : pastClasses?.map((c) => {
+          : classData?.items.map((c) => {
               return <ClassCard key={c.id} data={c} />;
             })}
       </div>
+      <button className="ml-[400px]" onClick={() => handlePageChange(1)}>
+        Prev Page
+      </button>
+      <button className="ml-[400px]" onClick={() => handlePageChange(0)}>
+        Next Page
+      </button>
     </>
   );
 };
-// export const getServerSideProps: GetServerSideProps = async (
-//   ctx: GetServerSidePropsContext
-// ) => {
-//   const session = await getServerAuthSession(ctx);
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: "/",
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   return {
-//     props: { session },
-//   };
-// };
 
 export default viewClasses;

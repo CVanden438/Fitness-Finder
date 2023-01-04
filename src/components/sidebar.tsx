@@ -6,6 +6,7 @@ interface propType {
   queryString: filters;
   category?: string;
   difficulty?: string;
+  search?: string;
 }
 const initialQuery: filters = {};
 const categories: categoriesArr = [
@@ -20,6 +21,7 @@ const sidebar: React.FC<propType> = ({
   setQueryString,
   category,
   difficulty,
+  search,
 }) => {
   const handleClick = (filterType: string, param: string) => {
     router.push({
@@ -31,8 +33,11 @@ const sidebar: React.FC<propType> = ({
   const handleClearFilters = () => {
     router.push({
       pathname: "/viewclasses",
+      query: search ? { search: search } : {},
     });
-    setQueryString(initialQuery);
+    search
+      ? setQueryString({ ...initialQuery, search: search })
+      : setQueryString({ ...initialQuery });
   };
   return (
     <div className="fixed mt-16 flex h-screen w-[200px] flex-col items-center border-r border-black bg-slate-50">
