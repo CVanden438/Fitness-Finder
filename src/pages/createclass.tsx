@@ -1,6 +1,7 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useSession } from "next-auth/react";
 import * as React from "react";
+import { date } from "zod";
 import { getServerAuthSession } from "../server/common/get-server-auth-session";
 import { trpc } from "../utils/trpc";
 
@@ -64,7 +65,7 @@ const FitnessClassForm = ({}) => {
       }));
       isValid = false;
     }
-    if (input.price <= 0) {
+    if (input.price < 0) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         price: "Price must be a positive number",
@@ -131,7 +132,7 @@ const FitnessClassForm = ({}) => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-md">
+      <form onSubmit={handleSubmit} className="mx-auto max-w-md pt-20">
         <div className="mb-4">
           <label htmlFor="title" className="mb-2 block text-lg font-bold">
             Title:
@@ -223,10 +224,10 @@ const FitnessClassForm = ({}) => {
             onChange={(event) => handleChange(event)}
             className={`w-full cursor-pointer appearance-none rounded border py-2 px-3 `}
           >
-            <option value="general fitness">General Fitness</option>
-            <option value="yoga">Yoga</option>
-            <option value="weights">Weights</option>
-            <option value="dance">Dance</option>
+            <option value="General Fitness">General Fitness</option>
+            <option value="Yoga">Yoga</option>
+            <option value="Weights">Weights</option>
+            <option value="Dance">Dance</option>
           </select>
         </div>
 
@@ -344,7 +345,6 @@ const FitnessClassForm = ({}) => {
           </button>
         </div>
       </form>
-      <button onClick={() => console.log(errors)}>Show Errors</button>
     </>
   );
 };

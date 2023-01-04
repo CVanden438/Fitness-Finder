@@ -153,6 +153,7 @@ export const classRouter = router({
         },
       });
     }),
+
   addComment: protectedProcedure
     .input(z.object({ classId: z.string(), text: z.string().max(100) }))
     .mutation(async ({ ctx, input }) => {

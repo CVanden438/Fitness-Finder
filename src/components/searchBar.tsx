@@ -41,11 +41,6 @@ const searchBar: React.FC<props> = ({ setQueryString, search }) => {
         }}
         className="ml-4 h-[41px] w-[300px] rounded-l-lg border border-black bg-slate-50 pl-2"
       />
-      {search && (
-        <button onClick={handleCancel} className="absolute translate-x-[120px]">
-          <img src="x.svg" height={17} width={17} alt="" />
-        </button>
-      )}
       <button>
         <img
           src="search.svg"
@@ -55,6 +50,11 @@ const searchBar: React.FC<props> = ({ setQueryString, search }) => {
           className="rounded-r-lg border-t border-r border-b border-black bg-slate-400 p-2 hover:bg-slate-500"
         />
       </button>
+      {search && (
+        <button onClick={handleCancel} className="absolute translate-x-[120px]">
+          <img src="x.svg" height={17} width={17} alt="" />
+        </button>
+      )}
     </form>
   );
 };

@@ -36,23 +36,23 @@ const classComments = ({ classId }: { classId: string }) => {
           onChange={(e) => {
             setInput(e.target.value);
           }}
-          className="w-full"
+          className="w-full rounded-lg bg-slate-50 p-2"
         ></textarea>
         <button
           type="submit"
-          className="mr-0 ml-auto block bg-slate-600 text-white"
+          className="mr-0 ml-auto block rounded-lg bg-slate-600 pl-1 pr-1 text-white"
         >
           Add Comment
         </button>
       </form>
-      <div className="mt-4 h-[260px] w-[400px] overflow-y-auto">
+      <div className="mt-4 h-[260px] w-[400px] overflow-y-auto ">
         {comments?.length === 0
           ? "Be the first to leave a comment!"
           : comments?.map((comm) => {
               return (
                 <div
                   key={comm.id}
-                  className="overflow-auto border-b bg-slate-100"
+                  className="mb-1 overflow-auto rounded-lg bg-slate-100 p-2 hover:bg-slate-200"
                 >
                   <div className="flex justify-between">
                     <div className="flex items-center gap-2">

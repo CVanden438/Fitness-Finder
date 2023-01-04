@@ -4,10 +4,11 @@ import React from "react";
 import { getServerAuthSession } from "../../server/common/get-server-auth-session";
 import { trpc } from "../../utils/trpc";
 import ClassCard from "../../components/classCard";
+const currDate = new Date().toISOString().slice(0, 10);
 const index = () => {
   const { data: sesh } = useSession();
   if (!sesh) {
-    return <p>Loading...</p>;
+    return <p className="pt-20">Loading...</p>;
   }
   const { data: classData } = trpc.class.getClassByUser.useQuery(
     {
@@ -15,12 +16,32 @@ const index = () => {
     },
     { refetchOnWindowFocus: false }
   );
+  const pastClasses = classData?.filter((c) => {
+    return c.class.date < currDate;
+  });
+  const upcomingClasses = classData?.filter((c) => {
+    return c.class.date >= currDate;
+  });
   return (
-    <div className="grid grid-cols-5 gap-10 p-10">
-      {classData &&
-        classData.map((c) => {
-          return <ClassCard key={c.class.id} data={c.class} />;
-        })}
+    <div className="pt-20 pl-10 pr-10">
+      <section className="border-b border-black">
+        <p className="text-xl font-bold">Upcoming Events:</p>
+        <div className="grid grid-cols-5 gap-10 p-6">
+          {upcomingClasses &&
+            upcomingClasses.map((c) => {
+              return <ClassCard key={c.class.id} data={c.class} />;
+            })}
+        </div>
+      </section>
+      <section className="pt-6">
+        <p className="text-xl font-bold">Past Events:</p>
+        <div className="grid grid-cols-5 gap-10 p-6">
+          {pastClasses &&
+            pastClasses.map((c) => {
+              return <ClassCard key={c.class.id} data={c.class} />;
+            })}
+        </div>
+      </section>
     </div>
   );
 };

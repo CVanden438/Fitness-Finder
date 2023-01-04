@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Sidebar from "../../components/sidebar";
 import SearchBar from "../../components/searchBar";
+const currDate = new Date().toISOString().slice(0, 10);
 const initialQuery: filters = {};
 const viewClasses = () => {
   const router = useRouter();
@@ -19,6 +20,13 @@ const viewClasses = () => {
   );
   const { data: sesh } = useSession();
   const [queryString, setQueryString] = useState(initialQuery);
+  const [upcoming, setUpcoming] = useState(true);
+  const pastClasses = classData?.filter((c) => {
+    return c.date < currDate;
+  });
+  const upcomingClasses = classData?.filter((c) => {
+    return c.date >= currDate;
+  });
   return (
     <>
       <Sidebar
@@ -28,11 +36,33 @@ const viewClasses = () => {
         difficulty={difficulty}
       />
       <SearchBar setQueryString={setQueryString} search={search} />
+      <div className="mt-4 flex justify-center">
+        <button
+          onClick={() => setUpcoming(false)}
+          className={`${
+            !upcoming ? "bg-slate-400" : "bg-slate-200 hover:bg-slate-300"
+          } rounded-l-full border-r border-black  p-2`}
+        >
+          Previous Classes
+        </button>
+        <button
+          onClick={() => setUpcoming(true)}
+          className={`${
+            upcoming ? "bg-slate-400" : "bg-slate-200 hover:bg-slate-300"
+          } rounded-r-full p-2 `}
+        >
+          Upcoming Classes
+        </button>
+      </div>
       {isLoading && <img src="loader.svg" alt="" className="ml-[200px]" />}
       <div className="ml-[200px] grid grid-cols-5 gap-6 p-6">
-        {classData?.map((c) => {
-          return <ClassCard key={c.id} data={c} />;
-        })}
+        {upcoming
+          ? upcomingClasses?.map((c) => {
+              return <ClassCard key={c.id} data={c} />;
+            })
+          : pastClasses?.map((c) => {
+              return <ClassCard key={c.id} data={c} />;
+            })}
       </div>
     </>
   );

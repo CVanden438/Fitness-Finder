@@ -18,7 +18,11 @@ const index: NextPage = () => {
   const { classpage } = useRouter().query as {
     classpage: string;
   };
-  const { data: classData, isLoading } = trpc.class.getSingleClass.useQuery(
+  const {
+    data: classData,
+    isLoading,
+    refetch,
+  } = trpc.class.getSingleClass.useQuery(
     { classId: classpage },
     {
       refetchOnWindowFocus: false,
@@ -65,13 +69,14 @@ const index: NextPage = () => {
     try {
       await addParticipant.mutateAsync({ classId: id });
       setHasJoined(true);
+      refetch();
     } catch (error) {
       console.log("Error Message:", error);
     }
   };
   return (
-    <div className="flex justify-center ">
-      <div className="mt-10 flex w-3/5 rounded-lg border border-black bg-slate-50 p-6 shadow-lg">
+    <div className="flex justify-center pt-20">
+      <div className="mt-10 flex w-3/5 rounded-lg border border-black bg-slate-300 p-6 shadow-lg ">
         <div className="flex w-3/4 flex-col gap-2 border-r-[1px] border-black pr-6">
           <div className="flex gap-6 border-b border-black pb-2">
             <img
@@ -89,14 +94,14 @@ const index: NextPage = () => {
             <p
               className={`${
                 difficultyColour[difficulty as keyof typeof difficultyColour]
-              } pl-2 pr-2 text-white`}
+              } rounded-lg pl-2 pr-2 text-white`}
             >
               {difficulty}
             </p>
           </div>
           <p>Description: {description}</p>
           <p>Duration: {duration} minutes</p>
-          <p>Price: £{price}</p>
+          <p>Price: {price === 0 ? "FREE" : `£ ${price}`}</p>
           <div className="flex items-center gap-1">
             <p>
               {_count.participant}/{capacity}
@@ -123,7 +128,7 @@ const index: NextPage = () => {
           </div>
           <button
             onClick={() => handleJoinClass(id)}
-            className="bg-slate-600 text-white"
+            className="rounded-lg bg-slate-600 text-white"
           >
             {hasJoined ? "Class Joined!" : "Join Class"}
           </button>

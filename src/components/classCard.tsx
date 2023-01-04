@@ -56,7 +56,7 @@ const classCard: NextPage<classCardProps> = ({ data }) => {
     _count,
   } = data;
   return (
-    <div className=" flex w-[250px] flex-col gap-y-2 rounded-lg border border-black bg-slate-50 p-1 shadow-lg shadow-gray-400">
+    <div className="flex w-[250px] flex-col gap-y-2 rounded-lg border border-black bg-slate-300 p-1 shadow-lg shadow-gray-400 hover:scale-110">
       <div className="flex items-center gap-x-2">
         <img
           src={image ? image : "default"}
@@ -76,13 +76,13 @@ const classCard: NextPage<classCardProps> = ({ data }) => {
         <p
           className={`${
             difficultyColour[difficulty as keyof typeof difficultyColour]
-          } pl-1 pr-1 text-white`}
+          } rounded-lg pl-1 pr-1 text-white`}
         >
           {difficulty}
         </p>
       </div>
       <p className="truncate text-gray-600">{description}</p>
-      <p>Price: £{price}</p>
+      <p>Price: {price === 0 ? "FREE" : `£ ${price}`}</p>
       <div className="flex justify-between">
         <div className="flex items-center gap-1">
           <p>
