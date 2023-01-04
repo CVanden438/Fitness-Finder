@@ -1,10 +1,10 @@
 import React from "react";
 
-interface props {
+export interface tooltipProps {
   children: React.ReactNode;
   text?: string | null;
 }
-const Tooltip: React.FC<props> = ({ children, text }) => {
+const Tooltip: React.FC<tooltipProps> = ({ children, text }) => {
   return (
     <div className="group relative inline-block">
       {children}
