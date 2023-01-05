@@ -279,7 +279,20 @@ export const classRouter = router({
         },
       });
     }),
-
+  getClassesByInstructor: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ input, ctx }) => {
+      return ctx.prisma.class.findMany({
+        where: { host: { id: input.id } },
+        select: {
+          ...defaultClassSelect,
+          _count: { select: { participant: true } },
+          host: {
+            select: { name: true, image: true },
+          },
+        },
+      });
+    }),
   addComment: protectedProcedure
     .input(z.object({ classId: z.string(), text: z.string().max(100) }))
     .mutation(async ({ ctx, input }) => {

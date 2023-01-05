@@ -16,6 +16,7 @@ const index = () => {
     },
     { refetchOnWindowFocus: false }
   );
+  const makeInstructor = trpc.user.makeInstructor.useMutation({});
   const pastClasses = classData?.filter((c) => {
     return c.class.date < currDate;
   });
@@ -24,6 +25,15 @@ const index = () => {
   });
   return (
     <div className="pt-20 pl-10 pr-10">
+      <section>
+        <p>Role: {sesh.user?.role}</p>
+        <button
+          className="p2 bg-slate-300"
+          onClick={() => makeInstructor.mutateAsync()}
+        >
+          BECOME INSTRCUTOR
+        </button>
+      </section>
       <section className="border-b border-black">
         <p className="text-xl font-bold">Upcoming Events:</p>
         <div className="grid grid-cols-5 gap-10 p-6">
