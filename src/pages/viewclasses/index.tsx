@@ -102,6 +102,7 @@ const viewClasses = () => {
     }
   );
   const { data: sesh } = useSession();
+  sesh && console.log(sesh);
   const [queryString, setQueryString] = useState(initialQuery);
   // const pastClasses = classData?.items.filter((c) => {
   //   return c.date < currDate;
