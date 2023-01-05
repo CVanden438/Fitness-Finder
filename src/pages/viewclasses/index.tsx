@@ -188,12 +188,24 @@ const viewClasses = () => {
               return <ClassCard key={c.id} data={c} />;
             })}
       </div>
-      <button className="ml-[400px]" onClick={() => handlePageChange(1)}>
-        Prev Page
-      </button>
-      <button className="ml-[400px]" onClick={() => handlePageChange(0)}>
-        Next Page
-      </button>
+      <div className="flex justify-center gap-4">
+        <button
+          className="rounded-lg bg-slate-400 pr-2 pl-2"
+          onClick={() => handlePageChange(1)}
+        >
+          Prev Page
+        </button>
+        <p className="">
+          {page ? page : 1}/
+          {classData?.count ? Math.ceil(classData?.count / LIMIT) : 1}
+        </p>
+        <button
+          className="rounded-lg bg-slate-400 pr-2 pl-2"
+          onClick={() => handlePageChange(0)}
+        >
+          Next Page
+        </button>
+      </div>
     </>
   );
 };
