@@ -88,7 +88,7 @@ import SearchBar from "../../components/searchBar";
 //   );
 // };
 
-const LIMIT = 4;
+const LIMIT = 10;
 const initialQuery: filters = {};
 const viewClasses = () => {
   const [upcoming, setUpcoming] = useState(true);
