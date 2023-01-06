@@ -4,7 +4,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 const header = () => {
   const { data: sesh } = useSession();
   return (
-    <header className="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b border-black bg-slate-50 p-4 font-bold">
+    <header className="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b border-black bg-slate-100 p-4 font-bold">
       <img src="" alt="Logo" className="h-8" />
       <nav>
         <Link href="/" className="px-2 hover:underline">
@@ -27,7 +27,7 @@ const header = () => {
       </nav>
       <button
         onClick={() => (sesh ? signOut() : signIn())}
-        className="rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
+        className="rounded-full border border-black bg-slate-600 py-2 px-4 font-bold text-white hover:bg-red-700"
       >
         {sesh ? "Logout" : "Login"}
       </button>
