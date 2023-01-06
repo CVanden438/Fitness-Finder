@@ -103,7 +103,6 @@ const viewClasses = () => {
     }
   );
   const { data: sesh } = useSession();
-  sesh && console.log(sesh);
   const [queryString, setQueryString] = useState(initialQuery);
   // const pastClasses = classData?.items.filter((c) => {
   //   return c.date < currDate;
@@ -148,6 +147,7 @@ const viewClasses = () => {
         setQueryString={setQueryString}
         search={search}
         queryString={queryString}
+        route={"/viewclasses"}
       />
       <div className="mt-4 flex justify-center">
         <button

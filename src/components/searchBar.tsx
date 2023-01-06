@@ -7,11 +7,13 @@ interface props {
   setQueryString: React.Dispatch<React.SetStateAction<filters>>;
   search?: string;
   queryString: filters;
+  route: string;
 }
 const searchBar: React.FC<props> = ({
   setQueryString,
   search,
   queryString,
+  route,
 }) => {
   const [searchInput, setSearchInput] = useState("");
   const router = useRouter();
@@ -20,7 +22,7 @@ const searchBar: React.FC<props> = ({
     let search = searchInput;
     // setQueryString(initialQuery);
     router.push({
-      pathname: "/viewclasses",
+      pathname: route,
       query: { ...queryString, search },
     });
     setQueryString({ ...queryString, search: search });
@@ -28,7 +30,7 @@ const searchBar: React.FC<props> = ({
   const handleCancel = () => {
     setSearchInput("");
     router.push({
-      pathname: "/viewclasses",
+      pathname: route,
       query: { ...queryString, search: undefined },
     });
     setQueryString({ ...queryString, search: undefined });
