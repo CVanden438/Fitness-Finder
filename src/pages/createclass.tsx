@@ -132,7 +132,7 @@ const FitnessClassForm = ({}) => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit} className="mx-auto max-w-md pt-20">
+      <form onSubmit={handleSubmit} className="mx-auto max-w-md pt-6 pb-6">
         <div className="mb-4">
           <label htmlFor="title" className="mb-2 block text-lg font-bold">
             Title:

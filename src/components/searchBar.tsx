@@ -36,7 +36,7 @@ const searchBar: React.FC<props> = ({
   return (
     <form
       action="submit"
-      className="relative flex w-full items-center justify-center pt-20"
+      className="relative flex w-full items-center justify-center pt-6"
       onSubmit={(e) => {
         handleSearch(e);
       }}

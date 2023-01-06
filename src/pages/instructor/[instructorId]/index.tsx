@@ -15,7 +15,7 @@ const index = () => {
       { refetchOnWindowFocus: false, enabled: false }
     );
   return (
-    <div className="pt-20 pl-20">
+    <div className="pt-6 pl-20">
       <button onClick={() => refetch()}>Load Classes</button>
       <div className="grid grid-cols-5 gap-4">
         {classData &&

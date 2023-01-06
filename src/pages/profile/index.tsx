@@ -24,7 +24,7 @@ const index = () => {
     return c.class.date >= currDate;
   });
   return (
-    <div className="pt-20 pl-10 pr-10">
+    <div className="pt-6 pl-10 pr-10">
       <section>
         <p>Role: {sesh.user?.role}</p>
         <button

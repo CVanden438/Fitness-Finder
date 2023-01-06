@@ -5,6 +5,7 @@ import ClassCard from "../../components/classCard";
 import { useRouter } from "next/router";
 import Sidebar from "../../components/sidebar";
 import SearchBar from "../../components/searchBar";
+import Pagination from "../../components/Pagination";
 // const LIMIT = 4;
 // const initialQuery: filters = {};
 // const viewClasses = () => {
@@ -113,7 +114,6 @@ const viewClasses = () => {
   const handlePageChange = (direction: number) => {
     if (direction === 0) {
       if (classData) {
-        console.log(classData.count);
         if (
           Number(page) === Math.ceil(classData.count / LIMIT) ||
           classData.count <= LIMIT
@@ -189,24 +189,12 @@ const viewClasses = () => {
               return <ClassCard key={c.id} data={c} />;
             })}
       </div>
-      <div className="flex justify-center gap-4">
-        <button
-          className="rounded-lg bg-slate-400 pr-2 pl-2"
-          onClick={() => handlePageChange(1)}
-        >
-          Prev Page
-        </button>
-        <p className="">
-          {page ? page : 1}/
-          {classData?.count ? Math.ceil(classData?.count / LIMIT) : 1}
-        </p>
-        <button
-          className="rounded-lg bg-slate-400 pr-2 pl-2"
-          onClick={() => handlePageChange(0)}
-        >
-          Next Page
-        </button>
-      </div>
+      <Pagination
+        handlePageChange={handlePageChange}
+        count={classData?.count}
+        page={page}
+        LIMIT={LIMIT}
+      />
     </>
   );
 };

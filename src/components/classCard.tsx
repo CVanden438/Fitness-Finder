@@ -15,6 +15,7 @@ interface classCardProps {
     host: {
       image: string | null;
       name: string | null;
+      id: string;
     };
     userId: string;
     capacity: number;
@@ -52,20 +53,22 @@ const classCard: NextPage<classCardProps> = ({ data }) => {
     title,
     description,
     date,
-    host: { image, name: hostName },
+    host: { image, name: hostName, id: hostId },
     _count,
   } = data;
   return (
-    <div className="flex w-[250px] flex-col gap-y-2 rounded-lg border border-black bg-slate-300 p-1 shadow-lg shadow-gray-400 hover:scale-110">
+    <div className="flex w-[250px] flex-col gap-y-2 rounded-lg border border-black bg-slate-200 p-1 shadow-lg shadow-gray-400 hover:scale-110">
       <div className="flex items-center gap-x-2">
-        <img
-          src={image ? image : "default"}
-          alt="test"
-          className="rounded-full"
-          height={40}
-          width={40}
-          loading="lazy"
-        />
+        <Link href={`/instructor/${hostId}`}>
+          <img
+            src={image ? image : "default"}
+            alt="test"
+            className="rounded-full"
+            height={40}
+            width={40}
+            loading="lazy"
+          />
+        </Link>
         <div className="">
           <p className="font-bold">{hostName}</p>
           <p className="font-semibold">{title}</p>
@@ -82,7 +85,7 @@ const classCard: NextPage<classCardProps> = ({ data }) => {
         </p>
       </div>
       <p className="truncate text-gray-600">{description}</p>
-      <p>Price: {price === 0 ? "FREE" : `£ ${price}`}</p>
+      <p>Price: {price === 0 ? "FREE" : `£${price}`}</p>
       <div className="flex justify-between">
         <div className="flex items-center gap-1">
           <p>

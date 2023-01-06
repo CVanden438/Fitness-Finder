@@ -201,7 +201,7 @@ export const classRouter = router({
               },
             },
           },
-          host: { select: { image: true, name: true } },
+          host: { select: { image: true, name: true, id: true } },
           _count: {
             select: {
               participant: true,
@@ -257,7 +257,7 @@ export const classRouter = router({
               participant: true,
             },
           },
-          host: { select: { image: true, name: true } },
+          host: { select: { image: true, name: true, id: true } },
         },
       });
     }),
@@ -272,7 +272,7 @@ export const classRouter = router({
               ...defaultClassSelect,
               _count: { select: { participant: true } },
               host: {
-                select: { name: true, image: true },
+                select: { name: true, image: true, id: true },
               },
             },
           },
@@ -288,7 +288,7 @@ export const classRouter = router({
           ...defaultClassSelect,
           _count: { select: { participant: true } },
           host: {
-            select: { name: true, image: true },
+            select: { name: true, image: true, id: true },
           },
         },
       });
