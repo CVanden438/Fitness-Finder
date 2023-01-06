@@ -1,61 +1,56 @@
 import React from "react";
 import { NextPage } from "next";
-import { trpc } from "../utils/trpc";
+import { RouterOutputs, trpc } from "../utils/trpc";
 import Link from "next/link";
 interface classCardProps {
-  data: {
-    participant?: {
-      user: {
-        name: string | null;
-      };
-    }[];
+  // participant?: {
+  //   user: {
+  //     name: string | null;
+  //   };
+  // }[];
+  id: string;
+  // createdAt: Date;
+  // updatedAt: Date;
+  host: {
+    image: string | null;
+    name: string | null;
     id: string;
-    createdAt: Date;
-    updatedAt: Date;
-    host: {
-      image: string | null;
-      name: string | null;
-      id: string;
-    };
-    userId: string;
-    capacity: number;
-    category: string;
-    date: string;
-    difficulty: string;
-    duration: number;
-    price: number;
-    time: string;
-    title: string;
-    description: string;
-    _count: {
-      participant: number;
-    };
+  };
+  // userId: string;
+  capacity: number;
+  category: string;
+  date: string;
+  difficulty: string;
+  // duration: number;
+  price: number;
+  // time: string;
+  title: string;
+  description: string;
+  _count: {
+    participant: number;
   };
 }
+// type classCardData = Omit<RouterOutputs["class"]["viewAll"], "count">["items"][number];
 
 enum difficultyColour {
   beginner = "bg-green-500",
   intermediate = "bg-orange-500",
   advanced = "bg-red-500",
 }
-const classCard: NextPage<classCardProps> = ({ data }) => {
+const classCard: NextPage<{ data: classCardProps }> = (props) => {
   const addParticipant = trpc.class.addParticipant.useMutation({});
   const {
     id,
-    createdAt,
-    updatedAt,
     capacity,
     category,
     difficulty,
-    duration,
     price,
-    time,
     title,
     description,
     date,
     host: { image, name: hostName, id: hostId },
     _count,
-  } = data;
+  } = props.data;
   return (
     <div className="flex w-[250px] flex-col gap-y-2 rounded-lg border border-black bg-slate-200 p-1 shadow-lg shadow-gray-400 hover:scale-110 hover:bg-slate-300">
       <div className="flex items-center gap-x-2">

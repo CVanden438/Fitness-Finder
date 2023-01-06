@@ -4,7 +4,7 @@ import { Class, Prisma } from "@prisma/client";
 import { contextProps } from "@trpc/react-query/dist/internals/context";
 import { connect } from "http2";
 
-//which values to return need to ue select: in query
+//standard class data for use in select
 const defaultClassSelect = Prisma.validator<Prisma.ClassSelect>()({
   id: true,
   createdAt: true,
