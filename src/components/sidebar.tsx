@@ -40,7 +40,7 @@ const sidebar: React.FC<propType> = ({
       : setQueryString({ ...initialQuery });
   };
   return (
-    <div className="fixed flex h-screen w-[200px] flex-col items-center border-r border-black bg-slate-50">
+    <div className="fixed z-10 flex h-screen w-[200px] flex-col items-center border-r border-black bg-slate-50">
       <p className="mt-2 w-4/5 rounded-lg border border-black bg-slate-300 text-center text-lg font-bold">
         Category
       </p>

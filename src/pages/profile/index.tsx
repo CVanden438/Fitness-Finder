@@ -4,19 +4,27 @@ import React from "react";
 import { getServerAuthSession } from "../../server/common/get-server-auth-session";
 import { trpc } from "../../utils/trpc";
 import ClassCard from "../../components/classCard";
+import InstructorModal from "../../components/InstructorModal";
 const currDate = new Date().toISOString().slice(0, 10);
 const index = () => {
   const { data: sesh } = useSession();
   if (!sesh) {
     return <p className="pt-20">Loading...</p>;
   }
-  const { data: classData } = trpc.class.getClassByUser.useQuery(
+  const { data: classData, refetch } = trpc.class.getClassByUser.useQuery(
     {
       id: sesh?.user?.id as string,
     },
     { refetchOnWindowFocus: false }
   );
   const makeInstructor = trpc.user.makeInstructor.useMutation({});
+  const handleMakeInstructor = () => {
+    if (sesh.user?.role === "INSTRUCTOR") {
+      return;
+    }
+    makeInstructor.mutateAsync();
+    refetch();
+  };
   const pastClasses = classData?.filter((c) => {
     return c.class.date < currDate;
   });
@@ -25,11 +33,14 @@ const index = () => {
   });
   return (
     <div className="pt-6 pl-10 pr-10">
-      <section>
+      <InstructorModal />
+      <section className="flex justify-between">
         <p>Role: {sesh.user?.role}</p>
         <button
-          className="p2 bg-slate-300"
-          onClick={() => makeInstructor.mutateAsync()}
+          className="rounded-lg bg-slate-300 pl-2 pr-2 hover:bg-slate-500 hover:text-white"
+          onClick={() => {
+            handleMakeInstructor();
+          }}
         >
           BECOME INSTRCUTOR
         </button>
