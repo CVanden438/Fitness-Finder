@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import InstructorCard from "../../components/InstructorCard";
 import SearchBar from "../../components/searchBar";
 import { trpc } from "../../utils/trpc";
-
+import Pagination from "../../components/Pagination";
 const LIMIT = 20;
 const Instructors = () => {
   const [queryString, setQueryString] = useState({});
   const router = useRouter();
-  const { search, page } = router.query as { search: string; page: string };
+  const { search, page } = router.query as { search?: string; page?: number };
   const { data: instructorData, isLoading } =
     trpc.user.viewAllInstructors.useQuery(
       { search },
@@ -16,9 +16,32 @@ const Instructors = () => {
         refetchOnWindowFocus: false,
       }
     );
+  const handlePageChange = (direction: number) => {
+    if (direction === 0) {
+      if (instructorData) {
+        if (
+          Number(page) === Math.ceil(instructorData.count / LIMIT) ||
+          instructorData.count <= LIMIT
+        ) {
+          return;
+        }
+      }
+      router.push({
+        pathname: "/instructor",
+        query: { ...queryString, page: page ? Number(page) + 1 : 2 },
+      });
+    } else {
+      if (Number(page) === 1 || page == undefined) {
+        return;
+      }
+      router.push({
+        pathname: "/instructor",
+        query: { ...queryString, page: Number(page) - 1 },
+      });
+    }
+  };
   return (
     <div className="">
-      <p>{instructorData?.count}</p>
       <SearchBar
         queryString={queryString}
         setQueryString={setQueryString}
@@ -31,6 +54,12 @@ const Instructors = () => {
             return <InstructorCard data={i} key={i.id} />;
           })}
       </div>
+      <Pagination
+        handlePageChange={handlePageChange}
+        LIMIT={LIMIT}
+        count={instructorData?.count}
+        page={page}
+      />
     </div>
   );
 };
