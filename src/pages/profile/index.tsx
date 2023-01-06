@@ -1,12 +1,13 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useSession } from "next-auth/react";
-import React from "react";
+import React, { useState } from "react";
 import { getServerAuthSession } from "../../server/common/get-server-auth-session";
 import { trpc } from "../../utils/trpc";
 import ClassCard from "../../components/classCard";
 import InstructorModal from "../../components/InstructorModal";
 const currDate = new Date().toISOString().slice(0, 10);
 const index = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: sesh } = useSession();
   if (!sesh) {
     return <p className="pt-20">Loading...</p>;
@@ -33,13 +34,14 @@ const index = () => {
   });
   return (
     <div className="pt-6 pl-10 pr-10">
-      <InstructorModal />
+      {isModalOpen && <InstructorModal setIsModalOpen={setIsModalOpen} />}
       <section className="flex justify-between">
         <p>Role: {sesh.user?.role}</p>
         <button
           className="rounded-lg bg-slate-300 pl-2 pr-2 hover:bg-slate-500 hover:text-white"
           onClick={() => {
-            handleMakeInstructor();
+            // handleMakeInstructor();
+            setIsModalOpen(true);
           }}
         >
           BECOME INSTRCUTOR
