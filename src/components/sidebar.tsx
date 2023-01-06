@@ -52,7 +52,7 @@ const sidebar: React.FC<propType> = ({
               onClick={() => {
                 handleClick("category", c);
               }}
-              className={`w-3/4 rounded-lg bg-slate-50 text-center hover:cursor-pointer hover:bg-slate-200 ${
+              className={`w-3/4 rounded-lg text-center hover:cursor-pointer hover:bg-slate-200 ${
                 category === c ? "bg-slate-200" : "bg-slate-50"
               }`}
             >
@@ -72,7 +72,7 @@ const sidebar: React.FC<propType> = ({
               onClick={() => {
                 handleClick("difficulty", d);
               }}
-              className={`w-3/4 rounded-lg bg-slate-50 text-center hover:cursor-pointer hover:bg-slate-200 ${
+              className={`w-3/4 rounded-lg text-center hover:cursor-pointer hover:bg-slate-200 ${
                 difficulty === d ? "bg-slate-200" : "bg-slate-50"
               }`}
             >
