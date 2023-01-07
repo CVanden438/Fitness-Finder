@@ -34,7 +34,9 @@ const index = () => {
   });
   return (
     <div className="pt-6 pl-10 pr-10">
-      {isModalOpen && <InstructorModal setIsModalOpen={setIsModalOpen} />}
+      {isModalOpen && (
+        <InstructorModal setIsModalOpen={setIsModalOpen} refetch={refetch} />
+      )}
       <section className="flex justify-between">
         <p>Role: {sesh.user?.role}</p>
         <button

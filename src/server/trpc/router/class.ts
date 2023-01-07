@@ -209,6 +209,7 @@ export const classRouter = router({
           },
         },
       });
+      //for pagination - have to do a seperate query for this in prisma
       const count = await ctx.prisma.class.count({
         where,
       });

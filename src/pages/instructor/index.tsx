@@ -48,7 +48,7 @@ const Instructors = () => {
         route={"/instructor"}
         search={search}
       />
-      <div className="m-auto w-3/4 pt-6 ">
+      <div className="m-auto grid w-3/4 grid-cols-6 pt-6">
         {instructorData &&
           instructorData.items.map((i) => {
             return <InstructorCard data={i} key={i.id} />;

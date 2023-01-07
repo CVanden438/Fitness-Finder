@@ -46,6 +46,7 @@ export const userRouter = router({
           image: true,
           id: true,
           bio: true,
+          _count: { select: { classes: true } },
         },
       });
       const count = await ctx.prisma.user.count({

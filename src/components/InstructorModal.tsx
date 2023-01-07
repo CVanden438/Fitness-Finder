@@ -4,9 +4,10 @@ import { IoClose } from "react-icons/io5";
 import { trpc } from "../utils/trpc";
 interface props {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  refetch: any;
 }
 
-const InstructorModal: React.FC<props> = ({ setIsModalOpen }) => {
+const InstructorModal: React.FC<props> = ({ setIsModalOpen, refetch }) => {
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
   const { data: sesh } = useSession();
@@ -28,6 +29,7 @@ const InstructorModal: React.FC<props> = ({ setIsModalOpen }) => {
     } else {
       makeInstructor.mutateAsync({ bio: input });
       setInput("");
+      refetch();
       setIsModalOpen(false);
     }
   };
