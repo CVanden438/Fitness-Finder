@@ -1,13 +1,29 @@
-import { router, publicProcedure, protectedProcedure } from "../trpc";
+import {
+  router,
+  publicProcedure,
+  protectedProcedure,
+  instructorProcedure,
+} from "../trpc";
 import { z } from "zod";
 export const userRouter = router({
-  makeInstructor: protectedProcedure.mutation(({ ctx }) => {
-    const userId = ctx.session.user.id;
-    return ctx.prisma.user.update({
-      where: { id: userId },
-      data: { role: "INSTRUCTOR" },
-    });
-  }),
+  makeInstructor: protectedProcedure
+    .input(z.object({ bio: z.string().min(1) }))
+    .mutation(({ ctx, input }) => {
+      const userId = ctx.session.user.id;
+      return ctx.prisma.user.update({
+        where: { id: userId },
+        data: { role: "INSTRUCTOR", bio: input.bio },
+      });
+    }),
+  uppdateBio: instructorProcedure
+    .input(z.object({ bio: z.string().min(1) }))
+    .mutation(({ ctx, input }) => {
+      const userId = ctx.session.user.id;
+      return ctx.prisma.user.update({
+        where: { id: userId },
+        data: { bio: input.bio },
+      });
+    }),
   viewAllInstructors: publicProcedure
     .input(
       z.object({
@@ -29,6 +45,7 @@ export const userRouter = router({
           name: true,
           image: true,
           id: true,
+          bio: true,
         },
       });
       const count = await ctx.prisma.user.count({

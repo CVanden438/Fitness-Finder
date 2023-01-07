@@ -18,14 +18,14 @@ const index = () => {
     },
     { refetchOnWindowFocus: false }
   );
-  const makeInstructor = trpc.user.makeInstructor.useMutation({});
-  const handleMakeInstructor = () => {
-    if (sesh.user?.role === "INSTRUCTOR") {
-      return;
-    }
-    makeInstructor.mutateAsync();
-    refetch();
-  };
+  // const makeInstructor = trpc.user.makeInstructor.useMutation({});
+  // const handleMakeInstructor = () => {
+  //   if (sesh.user?.role === "INSTRUCTOR") {
+  //     return;
+  //   }
+  //   makeInstructor.mutateAsync();
+  //   refetch();
+  // };
   const pastClasses = classData?.filter((c) => {
     return c.class.date < currDate;
   });
@@ -44,7 +44,9 @@ const index = () => {
             setIsModalOpen(true);
           }}
         >
-          BECOME INSTRCUTOR
+          {sesh.user?.role === "INSTRUCTOR"
+            ? "UPDATE BIO"
+            : "BECOME INSTRCUTOR"}
         </button>
       </section>
       <section className="border-b border-black">

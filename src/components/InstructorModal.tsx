@@ -11,18 +11,25 @@ const InstructorModal: React.FC<props> = ({ setIsModalOpen }) => {
   const [error, setError] = useState(false);
   const { data: sesh } = useSession();
   const makeInstructor = trpc.user.makeInstructor.useMutation({});
+  const updateBio = trpc.user.uppdateBio.useMutation({});
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (sesh && sesh.user?.role === "INSTRUCTOR") {
+    if (!input || input.length < 1) {
       setError(true);
       setTimeout(() => {
         setError(false);
       }, 3000);
       return;
     }
-    makeInstructor.mutateAsync();
-    setInput("");
-    setIsModalOpen(false);
+    if (sesh && sesh.user?.role === "INSTRUCTOR") {
+      updateBio.mutateAsync({ bio: input });
+      setInput("");
+      setIsModalOpen(false);
+    } else {
+      makeInstructor.mutateAsync({ bio: input });
+      setInput("");
+      setIsModalOpen(false);
+    }
   };
   return (
     <div className="fixed top-0 left-0 flex h-full w-full justify-center bg-black/50 pt-40">
@@ -56,7 +63,7 @@ const InstructorModal: React.FC<props> = ({ setIsModalOpen }) => {
         >
           Submit
         </button>
-        {error && <p>Already an instructor!</p>}
+        {error && <p>Please enter a bio!</p>}
       </form>
     </div>
   );

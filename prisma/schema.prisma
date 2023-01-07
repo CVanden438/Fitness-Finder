@@ -109,7 +109,8 @@ model User {
   tasks         Task[]
   classes       Class[]
   participant   Participant[]
-  comments Comment[]
+  comments      Comment[]
+  bio           String @default("Instructor has no bio")
 }
 
 model VerificationToken {
