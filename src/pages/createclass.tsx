@@ -5,15 +5,6 @@ import { date } from "zod";
 import { getServerAuthSession } from "../server/common/get-server-auth-session";
 import { trpc } from "../utils/trpc";
 
-// interface input {
-//   capacity: number;
-//   price: number;
-//   category: string;
-//   difficulty: "beginner" | "intermediate" | "advanced";
-//   time: string;
-//   duration: number;
-//   date: string;
-// }
 enum difficulty {
   beginner = "beginner",
   intermediate = "intermediate",
@@ -32,9 +23,8 @@ const initialValues = {
   description: "",
 };
 
-const FitnessClassForm = ({}) => {
+const useCreateClass = () => {
   const addClass = trpc.class.addClass.useMutation({});
-  const { data: session } = useSession();
   const [input, setInput] = React.useState(initialValues);
   const [errors, setErrors] = React.useState({
     capacity: "",
@@ -51,7 +41,10 @@ const FitnessClassForm = ({}) => {
       | React.ChangeEvent<HTMLSelectElement>
   ) => {
     if (["capacity", "price", "duration"].includes(event.target.name)) {
-      setInput({ ...input, [event.target.name]: parseInt(event.target.value) });
+      setInput({
+        ...input,
+        [event.target.name]: parseInt(event.target.value),
+      });
     } else {
       setInput({ ...input, [event.target.name]: event.target.value });
     }
@@ -130,6 +123,12 @@ const FitnessClassForm = ({}) => {
       setInput(initialValues);
     }
   };
+  return { setInput, input, errors, setErrors, handleSubmit, handleChange };
+};
+
+const FitnessClassForm = ({}) => {
+  const { input, errors, setInput, handleSubmit, handleChange } =
+    useCreateClass();
   return (
     <>
       <form onSubmit={handleSubmit} className="mx-auto max-w-md pt-6 pb-6">
@@ -352,7 +351,7 @@ export const getServerSideProps: GetServerSideProps = async (
   ctx: GetServerSidePropsContext
 ) => {
   const session = await getServerAuthSession(ctx);
-  if (!session) {
+  if (!session || session.user?.role !== "INSTRUCTOR") {
     return {
       redirect: {
         destination: "/",
