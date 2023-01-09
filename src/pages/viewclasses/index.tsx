@@ -179,7 +179,7 @@ const viewClasses = () => {
           Upcoming Classes
         </button>
       </div>
-      {isLoading && <img src="loader.svg" alt="" className="ml-[200px]" />}
+      {isLoading && <img src="loader.svg" alt="" className="mx-auto mt-4" />}
       <div className="ml-[200px] grid grid-cols-5 gap-6 p-6">
         {upcoming
           ? classData?.items.map((c) => {

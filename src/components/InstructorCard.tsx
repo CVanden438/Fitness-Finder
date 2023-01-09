@@ -15,7 +15,7 @@ const InstructorCard: React.FC<{ data: instructorCardProps }> = ({ data }) => {
         <Hover text="Go To Page" />
       </Link>
       <p className="text-lg font-bold">{name}</p>
-      <p>{bio}</p>
+      <p className="h-24 overflow-y-auto">{bio}</p>
       <p>Total Classes: {_count?.classes}</p>
     </div>
   );

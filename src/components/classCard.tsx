@@ -2,6 +2,7 @@ import React from "react";
 import { NextPage } from "next";
 import { RouterOutputs, trpc } from "../utils/trpc";
 import Link from "next/link";
+import Tooltip from "./ui/Tooltip";
 interface classCardProps {
   // participant?: {
   //   user: {
@@ -55,14 +56,16 @@ const classCard: NextPage<{ data: classCardProps }> = (props) => {
     <div className="flex w-[250px] flex-col gap-y-2 rounded-lg border border-black bg-slate-200 p-1 shadow-lg shadow-gray-400 hover:scale-110 hover:bg-slate-300">
       <div className="flex items-center gap-x-2">
         <Link href={`/instructor/${hostId}`}>
-          <img
-            src={image ? image : "default"}
-            alt="test"
-            className="rounded-full"
-            height={40}
-            width={40}
-            loading="lazy"
-          />
+          <Tooltip text="View Page">
+            <img
+              src={image ? image : "default"}
+              alt="test"
+              className="rounded-full"
+              height={40}
+              width={40}
+              loading="lazy"
+            />
+          </Tooltip>
         </Link>
         <div className="">
           <p className="font-bold">{hostName}</p>
