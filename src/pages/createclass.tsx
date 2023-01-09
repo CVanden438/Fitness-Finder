@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { useSession } from "next-auth/react";
 import * as React from "react";
 import { date } from "zod";
@@ -23,7 +23,7 @@ const initialValues = {
   description: "",
 };
 
-const useCreateClass = () => {
+export const useCreateClass = () => {
   const addClass = trpc.class.addClass.useMutation({});
   const [input, setInput] = React.useState(initialValues);
   const [errors, setErrors] = React.useState({
@@ -35,6 +35,7 @@ const useCreateClass = () => {
     title: "",
     description: "",
   });
+  const [submit, setSubmit] = React.useState(false);
   const handleChange = (
     event:
       | React.ChangeEvent<HTMLInputElement>
@@ -121,13 +122,25 @@ const useCreateClass = () => {
       //SUBMIT HERE
       addClass.mutateAsync(input);
       setInput(initialValues);
+      setSubmit(true);
+      setTimeout(() => {
+        setSubmit(false);
+      }, 3000);
     }
   };
-  return { setInput, input, errors, setErrors, handleSubmit, handleChange };
+  return {
+    setInput,
+    input,
+    errors,
+    setErrors,
+    handleSubmit,
+    handleChange,
+    submit,
+  };
 };
 
-const FitnessClassForm = ({}) => {
-  const { input, errors, setInput, handleSubmit, handleChange } =
+const FitnessClassForm: NextPage = () => {
+  const { input, errors, setInput, handleSubmit, handleChange, submit } =
     useCreateClass();
   return (
     <>
@@ -138,7 +151,7 @@ const FitnessClassForm = ({}) => {
           </label>
           <input
             type="string"
-            //   id="capacity"
+            id="capacity"
             value={input.title}
             name="title"
             onChange={(event) => handleChange(event)}
@@ -147,7 +160,9 @@ const FitnessClassForm = ({}) => {
             }`}
           />
           {errors.title && (
-            <p className="mt-2 text-xs italic text-red-500">{errors.title}</p>
+            <p data-testId="error" className="mt-2 text-xs italic text-red-500">
+              {errors.title}
+            </p>
           )}
         </div>
 
@@ -157,7 +172,7 @@ const FitnessClassForm = ({}) => {
           </label>
           <input
             type="string"
-            //   id="capacity"
+            id="capacity"
             value={input.description}
             name="description"
             onChange={(event) => handleChange(event)}
@@ -178,7 +193,7 @@ const FitnessClassForm = ({}) => {
           </label>
           <input
             type="number"
-            //   id="capacity"
+            id="capacity"
             value={input.capacity}
             name="capacity"
             onChange={(event) => handleChange(event)}
@@ -199,7 +214,7 @@ const FitnessClassForm = ({}) => {
           </label>
           <input
             type="number"
-            //   id="price"
+            id="price"
             value={input.price}
             name="price"
             onChange={(event) => handleChange(event)}
@@ -283,7 +298,7 @@ const FitnessClassForm = ({}) => {
           </label>
           <input
             type="date"
-            //   id="date"
+            id="date"
             value={input.date}
             name="date"
             onChange={(event) => handleChange(event)}
@@ -302,7 +317,7 @@ const FitnessClassForm = ({}) => {
           </label>
           <input
             type="time"
-            //   id="time"
+            id="time"
             value={input.time}
             name="time"
             onChange={(event) => handleChange(event)}
@@ -320,7 +335,7 @@ const FitnessClassForm = ({}) => {
           </label>
           <input
             type="number"
-            //   id="duration"
+            id="duration"
             value={input.duration}
             name="duration"
             onChange={(event) => handleChange(event)}
@@ -329,7 +344,10 @@ const FitnessClassForm = ({}) => {
             }`}
           />
           {errors.duration && (
-            <p className="mt-2 text-xs italic text-red-500">
+            <p
+              className="mt-2 text-xs italic text-red-500"
+              data-testid="duration-error"
+            >
               {errors.duration}
             </p>
           )}
@@ -338,11 +356,17 @@ const FitnessClassForm = ({}) => {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="focus:shadow-outline-blue rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none active:bg-blue-800"
+            className="focus:shadow-outline-blue rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none active:bg-blue-800 disabled:bg-blue-200"
+            disabled={submit}
           >
             Create Fitness Class
           </button>
         </div>
+        {submit && (
+          <div className="m-auto mt-4 w-3/4 rounded-lg bg-green-600 text-center text-white">
+            Class Created!
+          </div>
+        )}
       </form>
     </>
   );
