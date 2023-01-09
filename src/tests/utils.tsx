@@ -21,7 +21,7 @@ export type CustomAppProps = {
   cookies: string;
   session: Session | null | undefined; // Account for anonymous first time users
 };
-const mockSession: Session = {
+export const mockSession: Session = {
   expires: new Date(Date.now() + 2 * 86400).toISOString(),
   user: {
     role: "INSTRUCTOR",

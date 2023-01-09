@@ -5,7 +5,10 @@ const header = () => {
   const { data: sesh } = useSession();
   return (
     <header className="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b border-black bg-slate-100 p-4 font-bold">
-      <img src="" alt="Logo" className="h-8" />
+      {/* <img src="" alt="Logo" className="h-8" /> */}
+      <Link href="/">
+        <p className="text-lg font-bold">Fitness Finder</p>
+      </Link>
       <nav>
         <Link href="/" className="px-2 hover:underline">
           Home
