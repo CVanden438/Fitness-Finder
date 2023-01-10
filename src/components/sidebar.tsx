@@ -7,6 +7,8 @@ interface propType {
   category?: string;
   difficulty?: string;
   search?: string;
+  isSidebarOpen?: boolean;
+  setIsSidebarOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const initialQuery: filters = {};
 const categories: categoriesArr = [
@@ -22,6 +24,8 @@ const Sidebar: React.FC<propType> = ({
   category,
   difficulty,
   search,
+  isSidebarOpen,
+  setIsSidebarOpen,
 }) => {
   const handleClick = (filterType: string, param: string) => {
     router.push({
@@ -40,11 +44,15 @@ const Sidebar: React.FC<propType> = ({
       : setQueryString({ ...initialQuery });
   };
   return (
-    <div className="fixed z-10 flex h-screen w-[200px] flex-col items-center border-r border-black bg-slate-50">
+    <div
+      className={`${
+        isSidebarOpen ? "flex" : "hidden sm:flex"
+      } fixed z-10 h-screen w-full flex-col items-center border-r border-black bg-slate-50 sm:w-[200px]`}
+    >
       <p className="mt-2 w-4/5 rounded-lg border border-black bg-slate-300 text-center text-lg font-bold">
         Category
       </p>
-      <ul className={`mt-2 flex w-full flex-col items-center gap-2`}>
+      <ul className={`mt-2  flex w-full flex-col items-center gap-2`}>
         {categories.map((c) => {
           return (
             <li

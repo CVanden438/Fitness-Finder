@@ -8,6 +8,7 @@ import ClassComments from "../../../components/classComments";
 import Tooltip from "../../../components/ui/Tooltip";
 import { BiArrowBack } from "react-icons/bi";
 import Link from "next/link";
+import Image from "next/image";
 enum difficultyColour {
   beginner = "bg-green-500",
   intermediate = "bg-orange-500",
@@ -85,14 +86,16 @@ const ClassPage: NextPage = () => {
       >
         <BiArrowBack className="h-12 w-12" />
       </button>
-      <div className="mt-10 flex w-3/5 rounded-lg border border-black bg-slate-300 p-6 shadow-lg ">
-        <div className="flex w-3/4 flex-col gap-2 border-r-[1px] border-black pr-6">
+      <div className="mt-16 mb-4 flex w-4/5 flex-col rounded-lg border border-black bg-slate-300 p-6 shadow-lg md:mt-10 md:flex-row">
+        <div className="flex w-full flex-col gap-2 border-b border-black pb-4 md:w-1/2 md:border-b-0 md:border-r-[1px] md:pr-6">
           <div className="flex gap-6 border-b border-black pb-2">
             <Link href={`/instructor/${host.id}`}>
               <img
                 src={host.image ? host.image : "default"}
                 alt="hostImage"
-                className="h-14 rounded-full"
+                className="rounded-full"
+                height={56}
+                width={56}
               />
             </Link>
             <div className="">

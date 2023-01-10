@@ -144,7 +144,7 @@ const FitnessClassForm: NextPage = () => {
     useCreateClass();
   return (
     <>
-      <form onSubmit={handleSubmit} className="mx-auto max-w-md pt-6 pb-6">
+      <form onSubmit={handleSubmit} className="mx-auto max-w-md p-6">
         <div className="mb-4">
           <label htmlFor="title" className="mb-2 block text-lg font-bold">
             Title:

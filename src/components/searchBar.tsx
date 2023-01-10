@@ -38,7 +38,7 @@ const SearchBar: React.FC<props> = ({
   return (
     <form
       action="submit"
-      className="relative flex w-full items-center justify-center pt-6"
+      className="relative flex w-full items-center justify-center pt-6 sm:pl-[200px]"
       onSubmit={(e) => {
         handleSearch(e);
       }}
@@ -51,7 +51,7 @@ const SearchBar: React.FC<props> = ({
         onChange={(e) => {
           setSearchInput(e.target.value);
         }}
-        className="ml-4 h-[41px] w-[300px] rounded-l-lg border border-black bg-slate-50 pl-2"
+        className=" h-[41px] w-[300px] rounded-l-lg border border-black bg-slate-50 pl-2"
       />
       <button>
         <img

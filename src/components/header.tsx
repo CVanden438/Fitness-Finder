@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
+import HeaderDropdown from "./headerDropdown";
+import { BsArrowBarRight } from "react-icons/bs";
+
 const Header = () => {
   const { data: sesh } = useSession();
   return (
@@ -9,7 +12,7 @@ const Header = () => {
       <Link href="/">
         <p className="text-lg font-bold">Fitness Finder</p>
       </Link>
-      <nav>
+      <nav className="hidden md:block">
         <Link href="/" className="px-2 hover:underline">
           Home
         </Link>
@@ -28,6 +31,9 @@ const Header = () => {
           </Link>
         )}
       </nav>
+      <div className="md:hidden">
+        <HeaderDropdown />
+      </div>
       <button
         onClick={() => (sesh ? signOut() : signIn())}
         className="rounded-full border border-black bg-slate-600 py-2 px-4 font-bold text-white hover:bg-red-700"

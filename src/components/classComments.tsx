@@ -20,13 +20,13 @@ const ClassComments = ({ classId }: { classId: string }) => {
     setInput("");
   };
   return (
-    <div className="pl-6">
+    <div className="w-full pt-4 md:block md:w-1/2 md:pt-0 md:pl-6">
       <form
         action="submit"
         onSubmit={(e) => {
           handleSubmit(e);
         }}
-        className="w-[400px]"
+        className=""
       >
         <textarea
           name="comment"
@@ -45,7 +45,7 @@ const ClassComments = ({ classId }: { classId: string }) => {
           Add Comment
         </button>
       </form>
-      <div className="mt-4 h-[260px] w-[400px] overflow-y-auto ">
+      <div className="mt-4 h-[260px] overflow-y-auto ">
         {comments?.length === 0
           ? "Be the first to leave a comment!"
           : comments?.map((comm) => {

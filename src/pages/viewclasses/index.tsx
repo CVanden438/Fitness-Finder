@@ -93,6 +93,7 @@ const LIMIT = 10;
 const initialQuery: filters = {};
 const ClassesPage = () => {
   const [upcoming, setUpcoming] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const router = useRouter();
   const { category, difficulty, search, page } = router.query as filters;
   // USEINFINITEQUERY NOT ON TRPC??
@@ -135,13 +136,23 @@ const ClassesPage = () => {
     }
   };
   return (
-    <>
+    <div className="">
+      <button
+        onClick={() => {
+          setIsSidebarOpen(!isSidebarOpen);
+        }}
+        className="fixed left-0 right-0 bottom-12 z-20 mx-auto w-1/3 rounded-lg bg-slate-400 sm:hidden"
+      >
+        Filters
+      </button>
       <Sidebar
         queryString={queryString}
         setQueryString={setQueryString}
         category={category}
         difficulty={difficulty}
         search={search}
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
       />
       <SearchBar
         setQueryString={setQueryString}
@@ -149,7 +160,7 @@ const ClassesPage = () => {
         queryString={queryString}
         route={"/viewclasses"}
       />
-      <div className="mt-4 flex justify-center">
+      <div className="mt-4 flex justify-center sm:ml-[200px]">
         <button
           onClick={() => {
             setUpcoming(false);
@@ -180,7 +191,7 @@ const ClassesPage = () => {
         </button>
       </div>
       {isLoading && <img src="loader.svg" alt="" className="mx-auto mt-4" />}
-      <div className="ml-[200px] grid grid-cols-5 gap-6 p-6">
+      <div className="grid grid-cols-1 gap-6 p-6 sm:ml-[200px] md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         {upcoming
           ? classData?.items.map((c) => {
               return <ClassCard key={c.id} data={c} />;
@@ -189,13 +200,15 @@ const ClassesPage = () => {
               return <ClassCard key={c.id} data={c} />;
             })}
       </div>
-      <Pagination
-        handlePageChange={handlePageChange}
-        count={classData?.count}
-        page={page}
-        LIMIT={LIMIT}
-      />
-    </>
+      <div className="sm:ml-[200px]">
+        <Pagination
+          handlePageChange={handlePageChange}
+          count={classData?.count}
+          page={page}
+          LIMIT={LIMIT}
+        />
+      </div>
+    </div>
   );
 };
 

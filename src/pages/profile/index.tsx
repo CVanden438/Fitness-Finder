@@ -53,7 +53,7 @@ const ProfilePage = () => {
       </section>
       <section className="border-b border-black">
         <p className="text-xl font-bold">Upcoming Events:</p>
-        <div className="grid grid-cols-5 gap-10 p-6">
+        <div className="grid grid-cols-1 gap-10 pt-4 pb-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {upcomingClasses &&
             upcomingClasses.map((c) => {
               return <ClassCard key={c.class.id} data={c.class} />;
@@ -62,7 +62,7 @@ const ProfilePage = () => {
       </section>
       <section className="pt-6">
         <p className="text-xl font-bold">Past Events:</p>
-        <div className="grid grid-cols-5 gap-10 p-6">
+        <div className="grid grid-cols-1 gap-10 pt-4 pb-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {pastClasses &&
             pastClasses.map((c) => {
               return <ClassCard key={c.class.id} data={c.class} />;
