@@ -4,7 +4,7 @@ import { RouterOutputs } from "../utils/trpc";
 import Hover from "./ui/Hover";
 
 type instructorCardProps =
-  RouterOutputs["user"]["viewAllInstructors"]["items"][number];
+  RouterOutputs["user"]["getAllInstructors"]["items"][number];
 
 const InstructorCard: React.FC<{ data: instructorCardProps }> = ({ data }) => {
   const { id: instructorId, name, image, bio, _count } = data;
