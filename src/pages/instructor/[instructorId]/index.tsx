@@ -15,9 +15,9 @@ const InstructorPage = () => {
       { refetchOnWindowFocus: false, enabled: false }
     );
   return (
-    <div className="pt-6 pl-20">
+    <div className="p-6">
       <button onClick={() => refetch()}>Load Classes</button>
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {classData &&
           classData.map((c) => {
             return <ClassCard key={c.id} data={c} />;
