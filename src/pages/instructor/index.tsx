@@ -5,7 +5,7 @@ import SearchBar from "../../components/searchBar";
 import { trpc } from "../../utils/trpc";
 import Pagination from "../../components/Pagination";
 const LIMIT = 20;
-const Instructors = () => {
+const InstructorsPage = () => {
   const [queryString, setQueryString] = useState({});
   const router = useRouter();
   const { search, page } = router.query as { search?: string; page?: number };
@@ -64,4 +64,4 @@ const Instructors = () => {
   );
 };
 
-export default Instructors;
+export default InstructorsPage;

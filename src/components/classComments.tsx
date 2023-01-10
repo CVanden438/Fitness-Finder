@@ -2,7 +2,7 @@ import { signIn, useSession } from "next-auth/react";
 import React, { useState } from "react";
 import { trpc } from "../utils/trpc";
 
-const classComments = ({ classId }: { classId: string }) => {
+const ClassComments = ({ classId }: { classId: string }) => {
   const [input, setInput] = useState("");
   const { data: sesh } = useSession();
   const addComment = trpc.class.addComment.useMutation({});
@@ -74,4 +74,4 @@ const classComments = ({ classId }: { classId: string }) => {
   );
 };
 
-export default classComments;
+export default ClassComments;

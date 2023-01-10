@@ -38,7 +38,7 @@ enum difficultyColour {
   intermediate = "bg-orange-500",
   advanced = "bg-red-500",
 }
-const classCard: NextPage<{ data: classCardProps }> = (props) => {
+const ClassCard: NextPage<{ data: classCardProps }> = (props) => {
   const addParticipant = trpc.class.addParticipant.useMutation({});
   const {
     id,
@@ -112,4 +112,4 @@ const classCard: NextPage<{ data: classCardProps }> = (props) => {
   );
 };
 
-export default classCard;
+export default ClassCard;

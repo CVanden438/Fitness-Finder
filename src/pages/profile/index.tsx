@@ -6,7 +6,7 @@ import { trpc } from "../../utils/trpc";
 import ClassCard from "../../components/classCard";
 import InstructorModal from "../../components/InstructorModal";
 const currDate = new Date().toISOString().slice(0, 10);
-const index = () => {
+const ProfilePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: sesh } = useSession();
   if (!sesh) {
@@ -90,4 +90,4 @@ export const getServerSideProps: GetServerSideProps = async (
     props: { session },
   };
 };
-export default index;
+export default ProfilePage;

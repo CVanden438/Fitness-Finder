@@ -9,7 +9,7 @@ interface props {
   queryString: filters;
   route: string;
 }
-const searchBar: React.FC<props> = ({
+const SearchBar: React.FC<props> = ({
   setQueryString,
   search,
   queryString,
@@ -71,4 +71,4 @@ const searchBar: React.FC<props> = ({
   );
 };
 
-export default searchBar;
+export default SearchBar;

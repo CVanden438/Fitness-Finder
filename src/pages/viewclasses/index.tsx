@@ -91,7 +91,7 @@ import Pagination from "../../components/Pagination";
 
 const LIMIT = 10;
 const initialQuery: filters = {};
-const viewClasses = () => {
+const ClassesPage = () => {
   const [upcoming, setUpcoming] = useState(true);
   const router = useRouter();
   const { category, difficulty, search, page } = router.query as filters;
@@ -199,4 +199,4 @@ const viewClasses = () => {
   );
 };
 
-export default viewClasses;
+export default ClassesPage;

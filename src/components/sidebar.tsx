@@ -16,7 +16,7 @@ const categories: categoriesArr = [
   "Yoga",
 ];
 const difficulties: difficultiesArr = ["Beginner", "Intermediate", "Advanced"];
-const sidebar: React.FC<propType> = ({
+const Sidebar: React.FC<propType> = ({
   queryString,
   setQueryString,
   category,
@@ -93,4 +93,4 @@ const sidebar: React.FC<propType> = ({
   );
 };
 
-export default sidebar;
+export default Sidebar;

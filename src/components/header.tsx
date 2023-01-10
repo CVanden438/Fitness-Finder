@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
-const header = () => {
+const Header = () => {
   const { data: sesh } = useSession();
   return (
     <header className="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b border-black bg-slate-100 p-4 font-bold">
@@ -38,4 +38,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default Header;

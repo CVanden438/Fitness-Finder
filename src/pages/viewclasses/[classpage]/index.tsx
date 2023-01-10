@@ -14,7 +14,7 @@ enum difficultyColour {
   advanced = "bg-red-500",
 }
 
-const index: NextPage = () => {
+const ClassPage: NextPage = () => {
   const [hasJoined, setHasJoined] = useState(false);
   const { data: sesh } = useSession();
   const router = useRouter();
@@ -191,4 +191,4 @@ const index: NextPage = () => {
 //     props: { session },
 //   };
 // };
-export default index;
+export default ClassPage;

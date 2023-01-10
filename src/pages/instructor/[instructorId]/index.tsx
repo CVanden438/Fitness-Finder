@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { trpc } from "../../../utils/trpc";
 import ClassCard from "../../../components/classCard";
-const index = () => {
+const InstructorPage = () => {
   const router = useRouter();
   const { instructorId } = router.query as {
     instructorId: string;
@@ -27,4 +27,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default InstructorPage;
