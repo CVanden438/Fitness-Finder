@@ -43,26 +43,7 @@ const Home: NextPage = () => {
             </Link>
           </div>
           <div className="">
-            <p className="text-lg text-white">
-              Welcome to Fitness Finder, the ultimate online platform for
-              finding and booking fitness classes. Whether you're a beginner or
-              a seasoned pro, our wide selection of classes will help you reach
-              your fitness goals. With our easy-to-use website, you can browse
-              through hundreds of classes in your area, including yoga, dance,
-              cardio, strength training, and more. Each class listing includes
-              detailed information such as the instructor's bio, class level,
-              and class duration, so you can find the perfect fit for you. Our
-              platform is designed to make booking classes quick and
-              hassle-free. Once you've found a class you want to take, simply
-              create an account and book your spot. You'll receive an email
-              confirmation, and you're all set! We understand that schedule can
-              be unpredictable, which is why we also provide easy class
-              cancellation and rescheduling options. Additionally, You can also
-              keep track of your progress, see your past bookings and class
-              records, and even rate the class and the instructor. Join our
-              community of fitness enthusiasts today and start reaching your
-              fitness goals with Fitness Finder!
-            </p>
+            <p className="text-lg text-white">Welcome</p>
           </div>
           <div className="flex flex-col items-center gap-2">
             <p className="text-2xl text-white">
