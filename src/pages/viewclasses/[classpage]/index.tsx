@@ -63,7 +63,7 @@ const ClassPage: NextPage = () => {
     if (!sesh) {
       signIn();
     }
-    for (let i of classData.participant) {
+    for (const i of classData.participant) {
       if (i.user.id === sesh?.user?.id) {
         console.log("already signed up");
         return;

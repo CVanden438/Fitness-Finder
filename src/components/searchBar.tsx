@@ -19,7 +19,7 @@ const SearchBar: React.FC<props> = ({
   const router = useRouter();
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let search = searchInput;
+    const search = searchInput;
     // setQueryString(initialQuery);
     router.push({
       pathname: route,
