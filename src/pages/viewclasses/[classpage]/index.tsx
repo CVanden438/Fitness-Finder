@@ -31,7 +31,7 @@ const ClassPage: NextPage = () => {
       refetchOnWindowFocus: false,
       onSuccess: (classData) => {
         if (classData) {
-          for (let i of classData.participant) {
+          for (const i of classData.participant) {
             if (i.user.id === sesh?.user?.id) {
               setHasJoined(true);
             }
