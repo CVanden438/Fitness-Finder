@@ -10,7 +10,7 @@ const Instructors = () => {
   const router = useRouter();
   const { search, page } = router.query as { search?: string; page?: number };
   const { data: instructorData, isLoading } =
-    trpc.user.viewAllInstructors.useQuery(
+    trpc.user.getAllInstructors.useQuery(
       { search },
       {
         refetchOnWindowFocus: false,

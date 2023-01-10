@@ -96,7 +96,7 @@ const viewClasses = () => {
   const router = useRouter();
   const { category, difficulty, search, page } = router.query as filters;
   // USEINFINITEQUERY NOT ON TRPC??
-  const { data: classData, isLoading } = trpc.class.viewAll.useQuery(
+  const { data: classData, isLoading } = trpc.class.getAllClass.useQuery(
     { category, difficulty, search, limit: LIMIT, upcoming, page },
     {
       refetchOnWindowFocus: false,

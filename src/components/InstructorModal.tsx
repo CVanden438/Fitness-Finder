@@ -11,7 +11,7 @@ const InstructorModal: React.FC<props> = ({ setIsModalOpen, refetch }) => {
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
   const { data: sesh } = useSession();
-  const makeInstructor = trpc.user.makeInstructor.useMutation({});
+  const makeInstructor = trpc.user.addInstructor.useMutation({});
   const updateBio = trpc.user.uppdateBio.useMutation({});
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

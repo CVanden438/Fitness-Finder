@@ -156,7 +156,7 @@ export const classRouter = router({
   //       nextCursor,
   //     };
   //   }),
-  viewAll: publicProcedure
+  getAllClass: publicProcedure
     .input(
       z.object({
         category: z.string().optional(),

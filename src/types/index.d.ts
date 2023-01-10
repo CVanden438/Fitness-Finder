@@ -5,4 +5,5 @@ interface filters {
   difficulty?: string;
   search?: string;
   page?: number;
+  price?: number;
 }

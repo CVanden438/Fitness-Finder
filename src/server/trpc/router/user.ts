@@ -6,7 +6,7 @@ import {
 } from "../trpc";
 import { z } from "zod";
 export const userRouter = router({
-  makeInstructor: protectedProcedure
+  addInstructor: protectedProcedure
     .input(z.object({ bio: z.string().min(1) }))
     .mutation(({ ctx, input }) => {
       const userId = ctx.session.user.id;
@@ -24,7 +24,7 @@ export const userRouter = router({
         data: { bio: input.bio },
       });
     }),
-  viewAllInstructors: publicProcedure
+  getAllInstructors: publicProcedure
     .input(
       z.object({
         search: z.string().optional(),
