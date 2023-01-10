@@ -190,7 +190,9 @@ const ClassesPage = () => {
           Upcoming Classes
         </button>
       </div>
-      {isLoading && <img src="loader.svg" alt="" className="mx-auto mt-4" />}
+      {isLoading && (
+        <img src="loader.svg" alt="" className="mx-auto mt-4 md:ml-[200px]" />
+      )}
       <div className="grid grid-cols-1 gap-6 p-6 sm:ml-[200px] md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         {upcoming
           ? classData?.items.map((c) => {
