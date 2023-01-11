@@ -47,7 +47,7 @@ const Sidebar: React.FC<propType> = ({
     <div
       className={`${
         isSidebarOpen ? "flex" : "hidden sm:flex"
-      } fixed z-10 h-screen w-full flex-col items-center border-r border-black bg-slate-50 sm:w-[200px]`}
+      } fixed z-10 h-screen w-full flex-col items-center border-r border-black bg-slate-100 sm:w-[200px]`}
     >
       <p className="mt-2 w-4/5 rounded-lg border border-black bg-slate-300 text-center text-lg font-bold">
         Category
