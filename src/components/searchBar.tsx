@@ -63,7 +63,7 @@ const SearchBar: React.FC<props> = ({
         />
       </button>
       {search && (
-        <button onClick={handleCancel} className="absolute translate-x-[120px]">
+        <button onClick={handleCancel} className="absolute translate-x-[110px]">
           <img src="x.svg" height={17} width={17} alt="" />
         </button>
       )}

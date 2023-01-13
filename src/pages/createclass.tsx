@@ -1,5 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { useSession } from "next-auth/react";
+import { redirect } from "next/dist/server/api-utils";
 import * as React from "react";
 import { date } from "zod";
 import { getServerAuthSession } from "../server/common/get-server-auth-session";
@@ -142,9 +143,15 @@ export const useCreateClass = () => {
 const FitnessClassForm: NextPage = () => {
   const { input, errors, setInput, handleSubmit, handleChange, submit } =
     useCreateClass();
+  const { data: sesh } = useSession();
   return (
     <>
       <form onSubmit={handleSubmit} className="mx-auto max-w-md p-6">
+        {!sesh && (
+          <p className="mb-4 rounded-md bg-slate-600 p-2 text-center text-white">
+            Login to Create a Class
+          </p>
+        )}
         <div className="mb-4">
           <label htmlFor="title" className="mb-2 block text-lg font-bold">
             Title:
@@ -357,7 +364,7 @@ const FitnessClassForm: NextPage = () => {
           <button
             type="submit"
             className="focus:shadow-outline-blue rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none active:bg-blue-800 disabled:bg-blue-200"
-            disabled={submit}
+            disabled={submit || !sesh}
           >
             Create Fitness Class
           </button>
@@ -371,21 +378,21 @@ const FitnessClassForm: NextPage = () => {
     </>
   );
 };
-export const getServerSideProps: GetServerSideProps = async (
-  ctx: GetServerSidePropsContext
-) => {
-  const session = await getServerAuthSession(ctx);
-  if (!session || session.user?.role !== "INSTRUCTOR") {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
+// export const getServerSideProps: GetServerSideProps = async (
+//   ctx: GetServerSidePropsContext
+// ) => {
+//   const session = await getServerAuthSession(ctx);
+//   if (!session || session.user?.role !== "INSTRUCTOR") {
+//     return {
+//       redirect: {
+//         destination: "/",
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  return {
-    props: { session },
-  };
-};
+//   return {
+//     props: { session },
+//   };
+// };
 export default FitnessClassForm;
