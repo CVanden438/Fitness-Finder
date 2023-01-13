@@ -3,8 +3,8 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/dist/server/api-utils";
 import * as React from "react";
 import { date } from "zod";
-import { getServerAuthSession } from "../server/common/get-server-auth-session";
-import { trpc } from "../utils/trpc";
+// import { getServerAuthSession } from "../server/common/get-server-auth-session";
+import { trpc } from "../../utils/trpc";
 
 enum difficulty {
   beginner = "beginner",
@@ -24,7 +24,7 @@ const initialValues = {
   description: "",
 };
 
-export const useCreateClass = () => {
+const useCreateClass = () => {
   const addClass = trpc.class.addClass.useMutation({});
   const [input, setInput] = React.useState(initialValues);
   const [errors, setErrors] = React.useState({
