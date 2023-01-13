@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import { RouterOutputs, trpc } from "../utils/trpc";
 import Link from "next/link";
 import Tooltip from "./ui/Tooltip";
+import Image from "next/image";
 interface classCardProps {
   // participant?: {
   //   user: {
@@ -38,7 +39,7 @@ enum difficultyColour {
   intermediate = "bg-orange-500",
   advanced = "bg-red-500",
 }
-const ClassCard: NextPage<{ data: classCardProps }> = (props) => {
+const ClassCard: React.FC<{ data: classCardProps }> = (props) => {
   const addParticipant = trpc.class.addParticipant.useMutation({});
   const {
     id,
@@ -89,13 +90,7 @@ const ClassCard: NextPage<{ data: classCardProps }> = (props) => {
           <p>
             {_count.participant}/{capacity}
           </p>
-          <img
-            src="personicon.png"
-            alt="icon"
-            height={16}
-            width={16}
-            loading="lazy"
-          />
+          <Image src="/personicon.png" alt="icon" height={10} width={13} />
         </div>
         <p>{date}</p>
       </div>

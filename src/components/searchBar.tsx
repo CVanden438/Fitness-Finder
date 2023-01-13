@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -54,8 +55,8 @@ const SearchBar: React.FC<props> = ({
         className=" h-[41px] w-[300px] rounded-l-lg border border-black bg-slate-50 pl-2"
       />
       <button>
-        <img
-          src="search.svg"
+        <Image
+          src="/search.svg"
           alt=""
           height={40}
           width={40}
@@ -64,7 +65,7 @@ const SearchBar: React.FC<props> = ({
       </button>
       {search && (
         <button onClick={handleCancel} className="absolute translate-x-[110px]">
-          <img src="x.svg" height={17} width={17} alt="" />
+          <Image src="/x.svg" height={17} width={17} alt="" />
         </button>
       )}
     </form>

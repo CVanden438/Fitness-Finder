@@ -120,23 +120,30 @@ const ClassPage: NextPage = () => {
             <p>
               {_count.participant}/{capacity}
             </p>
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+            <Image
+              src="/personicon.png"
               alt="person_icon"
-              className="h-[20px] w-[20px]"
+              // className="h-[20px] w-[20px]"
+              width={16}
+              height={16}
             />
           </div>
           <div className="flex items-center gap-4">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/55/55281.png"
+            <Image
+              // src="https://cdn-icons-png.flaticon.com/512/55/55281.png"
+              src="/calandericon.png"
               alt="calander_icon"
-              className="h-[20px] w-[20px] object-contain"
+              width={20}
+              height={20}
+              // className="h-[20px] w-[20px] object-contain"
             />
             <p>{date}</p>
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/3917/3917267.png"
+            <Image
+              src="/clockicon.png"
               alt="clock_icon"
-              className="h-[20px] w-[20px] object-contain"
+              // className="h-[20px] w-[20px] object-contain"
+              height={20}
+              width={20}
             />
             <p>{time}</p>
           </div>
