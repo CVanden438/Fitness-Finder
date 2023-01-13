@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Sidebar from "../../components/sidebar";
 import SearchBar from "../../components/searchBar";
 import Pagination from "../../components/Pagination";
+import ClassCardLoading from "../../components/classCardLoading";
 // const LIMIT = 4;
 // const initialQuery: filters = {};
 // const viewClasses = () => {
@@ -190,8 +191,22 @@ const ClassesPage = () => {
           Upcoming Classes
         </button>
       </div>
-      {isLoading && (
+      {/* {isLoading && (
         <img src="loader.svg" alt="" className="mx-auto mt-4 md:ml-[200px]" />
+      )} */}
+      {isLoading && (
+        <div className="grid grid-cols-1 gap-4 p-6 sm:ml-[200px] md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+        </div>
       )}
       <div className="grid grid-cols-1 gap-4 p-6 sm:ml-[200px] md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         {upcoming
