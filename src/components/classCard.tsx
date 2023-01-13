@@ -53,7 +53,7 @@ const ClassCard: NextPage<{ data: classCardProps }> = (props) => {
     _count,
   } = props.data;
   return (
-    <div className="flex flex-col gap-y-2 rounded-md border border-black bg-slate-100 p-1 shadow-lg shadow-gray-400 hover:scale-110 hover:bg-slate-200 lg:w-[250px]">
+    <div className="flex flex-col gap-y-2 rounded-md border border-black bg-slate-100 p-1 shadow-lg shadow-gray-400 hover:bg-slate-200 lg:w-[250px]">
       <div className="flex items-center gap-x-2">
         <Link href={`/instructor/${hostId}`}>
           <Tooltip text="View Page">
