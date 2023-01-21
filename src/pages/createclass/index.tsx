@@ -256,7 +256,7 @@ const FitnessClassForm: NextPage = () => {
           <label htmlFor="category" className="mb-2 block text-lg font-bold">
             Difficulty:
           </label>
-          <div className="flex items-center justify-between">
+          <div className="grid grid-cols-1 items-center justify-between gap-2 md:grid-cols-3">
             <button
               type="button"
               className={`rounded-full px-4 py-2 text-lg font-bold ${
