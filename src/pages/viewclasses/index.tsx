@@ -5,7 +5,7 @@ import ClassCard from "../../components/classCard";
 import { useRouter } from "next/router";
 import Sidebar from "../../components/sidebar";
 import SearchBar from "../../components/searchBar";
-import Pagination from "../../components/Pagination";
+import Pagination from "../../components/pagination";
 import ClassCardLoading from "../../components/classCardLoading";
 // const LIMIT = 4;
 // const initialQuery: filters = {};

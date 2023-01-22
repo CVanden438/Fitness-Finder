@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import InstructorCard from "../../components/InstructorCard";
 import SearchBar from "../../components/searchBar";
 import { trpc } from "../../utils/trpc";
-import Pagination from "../../components/Pagination";
+import Pagination from "../../components/pagination";
 const LIMIT = 20;
 const InstructorsPage = () => {
   const [queryString, setQueryString] = useState({});
