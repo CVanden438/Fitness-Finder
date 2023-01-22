@@ -33,10 +33,6 @@ export const userRouter = router({
       })
     )
     .query(async ({ ctx, input }) => {
-      // const where = {
-      //   role:"INSTRUCTOR",
-      //   name:{contains:input?.search}
-      // }
       const items = await ctx.prisma.user.findMany({
         where: { role: "INSTRUCTOR", name: { contains: input?.search } },
         take: input.limit,

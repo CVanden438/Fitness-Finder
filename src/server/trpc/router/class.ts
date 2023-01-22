@@ -22,16 +22,6 @@ const defaultClassSelect = Prisma.validator<Prisma.ClassSelect>()({
 });
 
 export const classRouter = router({
-  hello: publicProcedure
-    .input(z.object({ text: z.string().nullish() }).nullish())
-    .query(({ input }) => {
-      return {
-        greeting: `Hello ${input?.text ?? "world"}`,
-      };
-    }),
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.example.findMany();
-  }),
   addClass: protectedProcedure
     .input(
       z.object({
@@ -52,45 +42,8 @@ export const classRouter = router({
       const task: Class = await ctx.prisma.class.create({ data: dataWithId });
       return task;
     }),
-  // viewAll: publicProcedure
-  //   .input(
-  //     z
-  //       .object({
-  //         category: z.string().optional(),
-  //         difficulty: z.string().optional(),
-  //         search: z.string().optional(),
-  //       })
-  //       .optional()
-  //   )
-  //   .query(({ input, ctx }) => {
-  //     const where = {
-  //       category: input?.category,
-  //       difficulty: input?.difficulty,
-  //       host: { name: { contains: input?.search } },
-  //     };
-  //     return ctx.prisma.class.findMany({
-  //       orderBy: {
-  //         createdAt: "asc",
-  //       },
-  //       where,
-  //       select: {
-  //         ...defaultClassSelect,
-  //         participant: {
-  //           select: {
-  //             user: {
-  //               select: { name: true },
-  //             },
-  //           },
-  //         },
-  //         host: { select: { image: true, name: true } },
-  //         _count: {
-  //           select: {
-  //             participant: true,
-  //           },
-  //         },
-  //       },
-  //     });
-  //   }),
+
+  //  --Cursor based pagination--
   // viewAll: publicProcedure
   //   .input(
   //     z.object({
@@ -156,6 +109,8 @@ export const classRouter = router({
   //       nextCursor,
   //     };
   //   }),
+
+  //--Standard skip based pagination--
   getAllClass: publicProcedure
     .input(
       z.object({
@@ -280,7 +235,7 @@ export const classRouter = router({
         },
       });
     }),
-  getClassesByInstructor: protectedProcedure
+  getClassesByInstructor: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ input, ctx }) => {
       return ctx.prisma.class.findMany({
