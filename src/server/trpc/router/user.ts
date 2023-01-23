@@ -53,4 +53,17 @@ export const userRouter = router({
         count,
       };
     }),
+  getFeaturedInstructors: publicProcedure.query(async ({ ctx }) => {
+    return ctx.prisma.user.findMany({
+      where: { role: "INSTRUCTOR" },
+      take: 10,
+      select: {
+        name: true,
+        image: true,
+        id: true,
+        bio: true,
+        _count: { select: { classes: true } },
+      },
+    });
+  }),
 });

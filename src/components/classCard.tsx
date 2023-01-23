@@ -5,27 +5,17 @@ import Link from "next/link";
 import Tooltip from "./ui/Tooltip";
 import Image from "next/image";
 interface classCardProps {
-  // participant?: {
-  //   user: {
-  //     name: string | null;
-  //   };
-  // }[];
   id: string;
-  // createdAt: Date;
-  // updatedAt: Date;
   host: {
     image: string | null;
     name: string | null;
     id: string;
   };
-  // userId: string;
   capacity: number;
   category: string;
   date: string;
   difficulty: string;
-  // duration: number;
   price: number;
-  // time: string;
   title: string;
   description: string;
   _count: {
@@ -54,7 +44,7 @@ const ClassCard: React.FC<{ data: classCardProps }> = (props) => {
     _count,
   } = props.data;
   return (
-    <div className="flex flex-col gap-y-2 rounded-md border border-black bg-slate-100 p-1 shadow-lg shadow-gray-400 hover:bg-slate-200 lg:w-[250px]">
+    <div className="flex flex-col gap-y-2 rounded-md border border-black bg-slate-100 p-1 shadow-lg shadow-gray-400 hover:bg-slate-200">
       <div className="flex items-center gap-x-2">
         <Link href={`/instructor/${hostId}`}>
           <Tooltip text="View Page">

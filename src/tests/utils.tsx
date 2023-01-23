@@ -31,12 +31,8 @@ export const mockSession: Session = {
     name: "Bob Bill",
   },
 };
-
-// https://github.com/nextauthjs/next-auth/discussions/4185
-// TODO: Should this be a helper util?
 jest.mock("next-auth/react", () => {
   const originalModule = jest.requireActual("next-auth/react");
-
   return {
     __esModule: true,
     ...originalModule,

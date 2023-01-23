@@ -270,4 +270,16 @@ export const classRouter = router({
         },
       });
     }),
+  //Add some metric to feature by or add a featured column to classes
+  getFeaturedClasses: publicProcedure.query(async ({ ctx }) => {
+    return ctx.prisma.class.findMany({
+      take: 10,
+      orderBy: { createdAt: "desc" },
+      select: {
+        ...defaultClassSelect,
+        host: { select: { image: true, name: true, id: true } },
+        _count: { select: { participant: true } },
+      },
+    });
+  }),
 });
