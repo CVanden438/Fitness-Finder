@@ -46,7 +46,7 @@ const ScrollingInstructorList = ({ elements }: props) => {
           transition: "transform 0.5s",
           transform: `translateX(-${currentSlide * 200 * PERSLIDE}px)`,
         }}
-        className="gap-2 pt-4 pb-4"
+        className="h-[360px] gap-2 pt-4 pb-4"
       >
         {elements &&
           elements.map((element, index) => (
