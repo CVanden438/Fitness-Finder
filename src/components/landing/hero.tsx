@@ -4,10 +4,10 @@ import Link from "next/link";
 const Hero = () => {
   return (
     <main>
-      <div className="relative m-auto mb-10 h-[500px] w-4/5">
-        <section className="absolute flex h-full w-1/2 flex-col items-center justify-center gap-4">
+      <div className=" m-auto mb-10 flex h-[500px] w-full flex-col items-center justify-center lg:flex-row">
+        <section className="flex w-full flex-col items-center justify-center gap-4 lg:h-full lg:w-1/2">
           <h1 className="text-5xl font-bold">Fitness Finder</h1>
-          <p className="w-3/4 text-lg">
+          <p className="w-full text-center text-lg">
             Browse thousands of fitness classes from a variety of activities and
             difiiculty levels to find the perfect class for your needs!
           </p>
@@ -23,7 +23,7 @@ const Hero = () => {
           alt="heroimage"
           height={500}
           width={500}
-          className="absolute right-4"
+          className="hidden lg:block"
         />
       </div>
     </main>

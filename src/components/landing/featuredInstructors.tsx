@@ -7,7 +7,7 @@ const FeaturedInstructors = () => {
       refetchOnWindowFocus: false,
     });
   return (
-    <div>
+    <div className="p-2">
       <p className="w-full text-center text-3xl font-bold">
         Featured Instructors
       </p>

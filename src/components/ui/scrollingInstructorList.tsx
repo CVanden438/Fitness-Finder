@@ -27,7 +27,7 @@ const ScrollingInstructorList = ({ elements }: props) => {
   };
 
   return (
-    <div className="relative m-auto flex w-5/6 overflow-hidden">
+    <div className="relative m-auto flex w-full overflow-hidden">
       <button
         onClick={handleLeftClick}
         className="absolute top-1/2 left-2 z-10 flex h-10 w-10 -translate-y-[50%] items-center justify-center rounded-full bg-gray-400 opacity-50 transition-all"
