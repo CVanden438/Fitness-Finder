@@ -147,7 +147,7 @@ const FitnessClassForm: NextPage = () => {
   return (
     <>
       <form onSubmit={handleSubmit} className="mx-auto max-w-md p-6">
-        {!sesh && (
+        {sesh?.user?.role !== "INSTURUCTOR" && (
           <p className="mb-4 rounded-md bg-slate-600 p-2 text-center text-white">
             Login to Create a Class
           </p>

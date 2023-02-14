@@ -48,7 +48,7 @@ const InstructorsPage = () => {
         route={"/instructor"}
         search={search}
       />
-      <div className="m-auto grid w-3/4 grid-cols-1 pb-4 pt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="m-auto grid w-3/4 grid-cols-1 gap-2 pb-4 pt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {instructorData &&
           instructorData.items.map((i) => {
             return <InstructorCard data={i} key={i.id} />;
