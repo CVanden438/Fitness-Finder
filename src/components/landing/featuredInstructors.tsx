@@ -10,7 +10,7 @@ const FeaturedInstructors = () => {
       refetchOnWindowFocus: false,
     });
   return (
-    <section className="mt-8 min-h-screen">
+    <section className="mt-8 min-h-screen pb-6">
       <p className="mb-8 w-full text-center text-6xl font-bold">
         Featured Instructors
       </p>
