@@ -7,12 +7,12 @@ const FeaturedInstructors = () => {
       refetchOnWindowFocus: false,
     });
   return (
-    <div className="p-2">
-      <p className="w-full text-center text-3xl font-bold">
+    <section className="h-screen">
+      <p className="mb-8 w-full text-center text-6xl font-bold">
         Featured Instructors
       </p>
       <ScrollingInstructorList elements={instructors} />
-    </div>
+    </section>
   );
 };
 

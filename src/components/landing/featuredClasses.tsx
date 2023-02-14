@@ -9,18 +9,32 @@ const FeaturedClasses = () => {
     { refetchOnWindowFocus: false }
   );
   return (
-    <div>
-      <div className="p-2">
-        <p className="w-full text-center text-3xl font-bold">
-          Featured Classes
-        </p>
-        {isLoading ? (
+    <section className="h-screen">
+      <p className="mb-8 w-full text-center text-6xl font-bold">
+        Featured Classes
+      </p>
+      {isLoading ? (
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           <ClassCardLoading />
-        ) : (
-          <ScrollingList elements={featured} />
-        )}
-      </div>
-    </div>
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+          <ClassCardLoading />
+        </div>
+      ) : (
+        <ScrollingList elements={featured} />
+      )}
+    </section>
   );
 };
 

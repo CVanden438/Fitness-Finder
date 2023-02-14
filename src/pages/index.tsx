@@ -17,10 +17,10 @@ const Home: NextPage = () => {
       </Head>
       <main className="mx-auto w-4/5 overflow-hidden bg-white">
         <Hero />
-        <div className="mb-6 flex w-full flex-col gap-6">
-          <FeaturedClasses />
-          <FeaturedInstructors />
-        </div>
+        {/* <div className="mb-6 flex w-full flex-col gap-6"> */}
+        <FeaturedClasses />
+        <FeaturedInstructors />
+        {/* </div> */}
       </main>
     </>
   );
