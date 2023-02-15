@@ -4,6 +4,7 @@ import InstructorCard from "../../components/InstructorCard";
 import SearchBar from "../../components/searchBar";
 import { trpc } from "../../utils/trpc";
 import Pagination from "../../components/pagination";
+import Head from "next/head";
 const LIMIT = 20;
 const InstructorsPage = () => {
   const [queryString, setQueryString] = useState({});
@@ -41,26 +42,33 @@ const InstructorsPage = () => {
     }
   };
   return (
-    <div className="">
-      <SearchBar
-        queryString={queryString}
-        setQueryString={setQueryString}
-        route={"/instructor"}
-        search={search}
-      />
-      <div className="m-auto grid w-3/4 grid-cols-1 gap-2 pb-4 pt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {instructorData &&
-          instructorData.items.map((i) => {
-            return <InstructorCard data={i} key={i.id} />;
-          })}
-      </div>
-      <Pagination
-        handlePageChange={handlePageChange}
-        LIMIT={LIMIT}
-        count={instructorData?.count}
-        page={page}
-      />
-    </div>
+    <>
+      <Head>
+        <title>Fitness Finder - View Instructors</title>
+        <meta name="description" content="Fitness Finder" />
+        <link rel="icon" href="/fficon.png" />
+      </Head>
+      <body className="">
+        <SearchBar
+          queryString={queryString}
+          setQueryString={setQueryString}
+          route={"/instructor"}
+          search={search}
+        />
+        <div className="m-auto grid w-3/4 grid-cols-1 gap-2 pb-4 pt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {instructorData &&
+            instructorData.items.map((i) => {
+              return <InstructorCard data={i} key={i.id} />;
+            })}
+        </div>
+        <Pagination
+          handlePageChange={handlePageChange}
+          LIMIT={LIMIT}
+          count={instructorData?.count}
+          page={page}
+        />
+      </body>
+    </>
   );
 };
 

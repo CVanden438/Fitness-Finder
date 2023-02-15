@@ -7,6 +7,7 @@ import Sidebar from "../../components/sidebar";
 import SearchBar from "../../components/searchBar";
 import Pagination from "../../components/pagination";
 import ClassCardLoading from "../../components/classCardLoading";
+import Head from "next/head";
 // const LIMIT = 4;
 // const initialQuery: filters = {};
 // const viewClasses = () => {
@@ -137,95 +138,102 @@ const ClassesPage = () => {
     }
   };
   return (
-    <div className="">
-      <button
-        onClick={() => {
-          setIsSidebarOpen(!isSidebarOpen);
-        }}
-        className="fixed left-0 right-0 bottom-12 z-20 mx-auto w-1/3 rounded-lg bg-slate-400 sm:hidden"
-      >
-        Filters
-      </button>
-      <Sidebar
-        queryString={queryString}
-        setQueryString={setQueryString}
-        category={category}
-        difficulty={difficulty}
-        search={search}
-        isSidebarOpen={isSidebarOpen}
-        setIsSidebarOpen={setIsSidebarOpen}
-      />
-      <SearchBar
-        setQueryString={setQueryString}
-        search={search}
-        queryString={queryString}
-        route={"/viewclasses"}
-      />
-      <div className="mt-4 flex justify-center sm:ml-[200px]">
+    <>
+      <Head>
+        <title>Fitness Finder - View Classes</title>
+        <meta name="description" content="Fitness Finder" />
+        <link rel="icon" href="/fficon.png" />
+      </Head>
+      <body className="">
         <button
           onClick={() => {
-            setUpcoming(false);
-            router.push({
-              pathname: "/viewclasses",
-              query: { ...queryString, page: 1 },
-            });
+            setIsSidebarOpen(!isSidebarOpen);
           }}
-          className={`${
-            !upcoming ? "bg-slate-400" : "bg-slate-200 hover:bg-slate-300"
-          } rounded-l-full border-r border-black  p-2`}
+          className="fixed left-0 right-0 bottom-12 z-20 mx-auto w-1/3 rounded-lg bg-slate-400 sm:hidden"
         >
-          Previous Classes
+          Filters
         </button>
-        <button
-          onClick={() => {
-            setUpcoming(true);
-            router.push({
-              pathname: "/viewclasses",
-              query: { ...queryString, page: 1 },
-            });
-          }}
-          className={`${
-            upcoming ? "bg-slate-400" : "bg-slate-200 hover:bg-slate-300"
-          } rounded-r-full p-2 `}
-        >
-          Upcoming Classes
-        </button>
-      </div>
-      {/* {isLoading && (
+        <Sidebar
+          queryString={queryString}
+          setQueryString={setQueryString}
+          category={category}
+          difficulty={difficulty}
+          search={search}
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
+        <SearchBar
+          setQueryString={setQueryString}
+          search={search}
+          queryString={queryString}
+          route={"/viewclasses"}
+        />
+        <div className="mt-4 flex justify-center sm:ml-[200px]">
+          <button
+            onClick={() => {
+              setUpcoming(false);
+              router.push({
+                pathname: "/viewclasses",
+                query: { ...queryString, page: 1 },
+              });
+            }}
+            className={`${
+              !upcoming ? "bg-slate-400" : "bg-slate-200 hover:bg-slate-300"
+            } rounded-l-full border-r border-black  p-2`}
+          >
+            Previous Classes
+          </button>
+          <button
+            onClick={() => {
+              setUpcoming(true);
+              router.push({
+                pathname: "/viewclasses",
+                query: { ...queryString, page: 1 },
+              });
+            }}
+            className={`${
+              upcoming ? "bg-slate-400" : "bg-slate-200 hover:bg-slate-300"
+            } rounded-r-full p-2 `}
+          >
+            Upcoming Classes
+          </button>
+        </div>
+        {/* {isLoading && (
         <img src="loader.svg" alt="" className="mx-auto mt-4 md:ml-[200px]" />
       )} */}
-      {isLoading && (
+        {isLoading && (
+          <div className="grid grid-cols-1 gap-4 p-6 sm:ml-[200px] md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+            <ClassCardLoading />
+            <ClassCardLoading />
+            <ClassCardLoading />
+            <ClassCardLoading />
+            <ClassCardLoading />
+            <ClassCardLoading />
+            <ClassCardLoading />
+            <ClassCardLoading />
+            <ClassCardLoading />
+            <ClassCardLoading />
+          </div>
+        )}
         <div className="grid grid-cols-1 gap-4 p-6 sm:ml-[200px] md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-          <ClassCardLoading />
-          <ClassCardLoading />
-          <ClassCardLoading />
-          <ClassCardLoading />
-          <ClassCardLoading />
-          <ClassCardLoading />
-          <ClassCardLoading />
-          <ClassCardLoading />
-          <ClassCardLoading />
-          <ClassCardLoading />
+          {upcoming
+            ? classData?.items.map((c) => {
+                return <ClassCard key={c.id} data={c} />;
+              })
+            : classData?.items.map((c) => {
+                return <ClassCard key={c.id} data={c} />;
+              })}
         </div>
-      )}
-      <div className="grid grid-cols-1 gap-4 p-6 sm:ml-[200px] md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-        {upcoming
-          ? classData?.items.map((c) => {
-              return <ClassCard key={c.id} data={c} />;
-            })
-          : classData?.items.map((c) => {
-              return <ClassCard key={c.id} data={c} />;
-            })}
-      </div>
-      <div className="sm:ml-[200px]">
-        <Pagination
-          handlePageChange={handlePageChange}
-          count={classData?.count}
-          page={page}
-          LIMIT={LIMIT}
-        />
-      </div>
-    </div>
+        <div className="sm:ml-[200px]">
+          <Pagination
+            handlePageChange={handlePageChange}
+            count={classData?.count}
+            page={page}
+            LIMIT={LIMIT}
+          />
+        </div>
+      </body>
+    </>
   );
 };
 

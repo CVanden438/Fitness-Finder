@@ -1,6 +1,7 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/dist/server/api-utils";
+import Head from "next/head";
 import * as React from "react";
 import { date } from "zod";
 // import { getServerAuthSession } from "../server/common/get-server-auth-session";
@@ -146,6 +147,11 @@ const FitnessClassForm: NextPage = () => {
   const { data: sesh } = useSession();
   return (
     <>
+      <Head>
+        <title>Fitness Finder - Create Class</title>
+        <meta name="description" content="Fitness Finder" />
+        <link rel="icon" href="/fficon.png" />
+      </Head>
       <form onSubmit={handleSubmit} className="mx-auto max-w-md p-6">
         {sesh?.user?.role !== "INSTURUCTOR" && (
           <p className="mb-4 rounded-md bg-slate-600 p-2 text-center text-white">
