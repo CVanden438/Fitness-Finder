@@ -48,7 +48,7 @@ const InstructorsPage = () => {
         <meta name="description" content="Fitness Finder" />
         <link rel="icon" href="/fficon.png" />
       </Head>
-      <body className="">
+      <div className="">
         <SearchBar
           queryString={queryString}
           setQueryString={setQueryString}
@@ -67,7 +67,7 @@ const InstructorsPage = () => {
           count={instructorData?.count}
           page={page}
         />
-      </body>
+      </div>
     </>
   );
 };

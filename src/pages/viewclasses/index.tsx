@@ -144,7 +144,7 @@ const ClassesPage = () => {
         <meta name="description" content="Fitness Finder" />
         <link rel="icon" href="/fficon.png" />
       </Head>
-      <body className="">
+      <div className="">
         <button
           onClick={() => {
             setIsSidebarOpen(!isSidebarOpen);
@@ -232,7 +232,7 @@ const ClassesPage = () => {
             LIMIT={LIMIT}
           />
         </div>
-      </body>
+      </div>
     </>
   );
 };

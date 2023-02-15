@@ -40,7 +40,7 @@ const ProfilePage = () => {
         <meta name="description" content="Fitness Finder" />
         <link rel="icon" href="/fficon.png" />
       </Head>
-      <body className="pt-6 pl-10 pr-10">
+      <div className="pt-6 pl-10 pr-10">
         {isModalOpen && (
           <InstructorModal setIsModalOpen={setIsModalOpen} refetch={refetch} />
         )}
@@ -76,7 +76,7 @@ const ProfilePage = () => {
               })}
           </div>
         </section>
-      </body>
+      </div>
     </>
   );
 };

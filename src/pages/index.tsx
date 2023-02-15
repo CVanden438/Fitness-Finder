@@ -15,13 +15,13 @@ const Home: NextPage = () => {
         <meta name="description" content="Fitness Finder" />
         <link rel="icon" href="/fficon.png" />
       </Head>
-      <main className="mx-auto w-4/5 overflow-hidden bg-white">
+      <div className="mx-auto w-4/5 overflow-hidden bg-white">
         <Hero />
         {/* <div className="mb-6 flex w-full flex-col gap-6"> */}
         <FeaturedClasses />
         <FeaturedInstructors />
         {/* </div> */}
-      </main>
+      </div>
     </>
   );
 };

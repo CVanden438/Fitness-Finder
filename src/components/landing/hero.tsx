@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 const Hero = () => {
   return (
-    <main>
+    <>
       <div className=" m-auto -mt-10 flex h-screen w-full flex-col items-center justify-center lg:flex-row">
         <section className="flex w-full flex-col items-center justify-center gap-4 lg:h-full lg:w-1/2">
           <h1 className="text-center text-7xl font-bold">Fitness Finder</h1>
@@ -26,7 +26,7 @@ const Hero = () => {
           className="hidden lg:block lg:w-1/2"
         />
       </div>
-    </main>
+    </>
   );
 };
 

@@ -22,7 +22,7 @@ const InstructorPage = () => {
         <meta name="description" content="Fitness Finder" />
         <link rel="icon" href="/fficon.png" />
       </Head>
-      <body className="p-6">
+      <div className="p-6">
         <button onClick={() => refetch()}>Load Classes</button>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {classData &&
@@ -30,7 +30,7 @@ const InstructorPage = () => {
               return <ClassCard key={c.id} data={c} />;
             })}
         </div>
-      </body>
+      </div>
     </>
   );
 };
