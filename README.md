@@ -16,3 +16,7 @@
 - Users can sort, filter and search classes
 - Users can convert to instructors
 - Instructors can post fitness classes
+
+## Live Site
+
+[Fitness-Finder](https://fitness-finder.vercel.app/)
