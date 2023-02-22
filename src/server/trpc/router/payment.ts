@@ -2,10 +2,7 @@ import { router, publicProcedure } from "../trpc";
 import { z } from "zod";
 import Stripe from "stripe";
 
-const stripe = new Stripe(
-  "sk_test_51MLwoHKfU5KZzoWD1MJIFZLNROlTCBgCRsrEo7DB3Kjm7QTAt8HSsuQPrfpIoqJVPoprUEmiYqBSYsQX7Mt6Uy2T00UNeUCamS",
-  { apiVersion: "2022-11-15" }
-);
+const stripe = new Stripe("", { apiVersion: "2022-11-15" });
 
 export const paymentRouter = router({
   addPayment: publicProcedure.mutation(async ({ ctx, input }) => {
@@ -20,7 +17,7 @@ export const paymentRouter = router({
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       payment_method_types: ["card"],
-      line_items: [{ price: "price_1MdlX3KfU5KZzoWDxNvoMO4E", quantity: 1 }],
+      line_items: [{ price: "", quantity: 1 }],
       success_url: `http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: "http://localhost:3000/cancel",
     });

@@ -17,8 +17,8 @@ const Home: NextPage = () => {
     const response = await payment.mutateAsync();
     // const stripe = await stripePromise;
     // stripe?.redirectToCheckout();
-    router.push(response);
-    console.log(response);
+    // router.push(response);
+    // console.log(response);
   };
   return (
     <>
@@ -29,9 +29,9 @@ const Home: NextPage = () => {
       </Head>
       <div className="mx-auto w-4/5 overflow-hidden bg-white">
         <Hero />
-        <button className="bg-red-200 p-2" onClick={handleSubmit}>
+        {/* <button className="bg-red-200 p-2" onClick={handleSubmit}>
           Pay Here
-        </button>
+        </button> */}
         {/* <div className="mb-6 flex w-full flex-col gap-6"> */}
         <FeaturedClasses />
         <FeaturedInstructors />
