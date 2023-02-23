@@ -15,10 +15,8 @@ export const config = {
 };
 const webhook = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
-    console.log("hello");
     const buff = await buffer(req);
     let event = req.body;
-    console.log("hello2");
     // Only verify the event if you have an endpoint secret defined.
     // Otherwise use the basic event deserialized with JSON.parse
     if (endpointSecret) {
