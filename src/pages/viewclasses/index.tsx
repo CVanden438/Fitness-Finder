@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { trpc } from "../../utils/trpc";
 import { useSession } from "next-auth/react";
-import ClassCard from "../../components/classCard";
+import ClassCard from "../../components/ClassCard";
 import { useRouter } from "next/router";
-import Sidebar from "../../components/sidebar";
-import SearchBar from "../../components/searchBar";
-import Pagination from "../../components/pagination";
-import ClassCardLoading from "../../components/classCardLoading";
+import Sidebar from "../../components/Sidebar";
+import SearchBar from "../../components/SearchBar";
+import Pagination from "../../components/Pagination";
+import ClassCardLoading from "../../components/ClassCardLoading";
 import Head from "next/head";
 // const LIMIT = 4;
 // const initialQuery: filters = {};

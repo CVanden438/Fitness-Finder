@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { RouterOutputs } from "../../utils/trpc";
-import ClassCard from "../classCard";
+import ClassCard from "../ClassCard";
 import InstructorCard from "../InstructorCard";
 interface props {
   elements: RouterOutputs["user"]["getFeaturedInstructors"] | undefined;

@@ -1,7 +1,7 @@
 import React from "react";
 import { trpc } from "../../utils/trpc";
-import ClassCard from "../classCard";
-import ClassCardLoading from "../classCardLoading";
+import ClassCard from "../ClassCard";
+import ClassCardLoading from "../ClassCardLoading";
 import ScrollingList from "../ui/ScrollingClassList";
 
 const FeaturedClasses = () => {
@@ -11,9 +11,9 @@ const FeaturedClasses = () => {
   );
   return (
     <section className="min-h-screen">
-      <p className="mb-8 w-full text-center text-6xl font-bold">
+      <h2 className="mb-8 w-full text-center text-6xl font-bold">
         Featured Classes
-      </p>
+      </h2>
       {isLoading ? (
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           <ClassCardLoading />
@@ -33,7 +33,6 @@ const FeaturedClasses = () => {
           <ClassCardLoading />
         </div>
       ) : (
-        // <ScrollingInstructorList elements={instructors} />
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {featured?.map((i) => {
             return <ClassCard data={i} key={i.id} />;

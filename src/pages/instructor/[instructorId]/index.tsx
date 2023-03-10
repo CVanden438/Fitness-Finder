@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { trpc } from "../../../utils/trpc";
-import ClassCard from "../../../components/classCard";
+import ClassCard from "../../../components/ClassCard";
 import Head from "next/head";
 const InstructorPage = () => {
   const router = useRouter();

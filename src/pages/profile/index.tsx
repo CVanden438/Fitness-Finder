@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import { getServerAuthSession } from "../../server/common/get-server-auth-session";
 import { trpc } from "../../utils/trpc";
-import ClassCard from "../../components/classCard";
+import ClassCard from "../../components/ClassCard";
 import InstructorModal from "../../components/InstructorModal";
 import Head from "next/head";
 const currDate = new Date().toISOString().slice(0, 10);

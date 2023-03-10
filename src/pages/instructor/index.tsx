@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import InstructorCard from "../../components/InstructorCard";
-import SearchBar from "../../components/searchBar";
+import SearchBar from "../../components/SearchBar";
 import { trpc } from "../../utils/trpc";
-import Pagination from "../../components/pagination";
+import Pagination from "../../components/Pagination";
 import Head from "next/head";
 const LIMIT = 20;
 const InstructorsPage = () => {

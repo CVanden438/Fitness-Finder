@@ -3,9 +3,9 @@ import Head from "next/head";
 import Link from "next/link";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 import { trpc } from "../utils/trpc";
-import Hero from "../components/landing/hero";
-import FeaturedClasses from "../components/landing/featuredClasses";
-import FeaturedInstructors from "../components/landing/featuredInstructors";
+import Hero from "../components/landing/Hero";
+import FeaturedClasses from "../components/landing/FeaturedClasses";
+import FeaturedInstructors from "../components/landing/FeaturedInstructors";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useRouter } from "next/router";
 
@@ -27,16 +27,16 @@ const Home: NextPage = () => {
         <meta name="description" content="Fitness Finder" />
         <link rel="icon" href="/fficon.png" />
       </Head>
-      <div className="mx-auto w-4/5 overflow-hidden bg-white">
+      <main className="mx-auto w-4/5 overflow-hidden bg-white">
         <Hero />
-        <button className="bg-red-200 p-2" onClick={handleSubmit}>
+        {/* <button className="bg-red-200 p-2" onClick={handleSubmit}>
           Pay Here
-        </button>
+        </button> */}
         {/* <div className="mb-6 flex w-full flex-col gap-6"> */}
         <FeaturedClasses />
         <FeaturedInstructors />
         {/* </div> */}
-      </div>
+      </main>
     </>
   );
 };

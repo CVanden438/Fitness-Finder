@@ -4,9 +4,9 @@ import Link from "next/link";
 const Hero = () => {
   return (
     <>
-      <div className=" m-auto -mt-10 flex h-screen w-full flex-col items-center justify-center lg:flex-row">
-        <section className="flex w-full flex-col items-center justify-center gap-4 lg:h-full lg:w-1/2">
-          <h1 className="text-center text-7xl font-bold">Fitness Finder</h1>
+      <section className=" m-auto -mt-10 flex h-screen w-full flex-col items-center justify-center lg:flex-row">
+        <article className="flex w-full flex-col items-center justify-center gap-4 lg:h-full lg:w-1/2">
+          <h2 className="text-center text-7xl font-bold">Fitness Finder</h2>
           <p className="w-full text-center text-2xl">
             Browse thousands of fitness classes from a variety of activities and
             difiiculty levels to find the perfect class for your needs!
@@ -17,7 +17,7 @@ const Hero = () => {
           >
             Browse Now
           </Link>
-        </section>
+        </article>
         <Image
           src={"/heroimage.webp"}
           alt="heroimage"
@@ -25,7 +25,7 @@ const Hero = () => {
           width={500}
           className="hidden lg:block lg:w-1/2"
         />
-      </div>
+      </section>
     </>
   );
 };
