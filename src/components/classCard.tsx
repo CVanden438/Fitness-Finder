@@ -48,7 +48,7 @@ const ClassCard: React.FC<{ data: classCardProps }> = (props) => {
         backgroundImage:
           "url(https://images.unsplash.com/photo-1552196563-55cd4e45efb3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1026&q=80)",
       }}
-      className="bg-cover outline outline-1"
+      className="bg-cover outline outline-2"
     >
       <div className="flex flex-col gap-y-4 bg-gradient-to-b from-black/30 to-black p-2 backdrop-grayscale">
         <div className="flex items-center gap-x-2 ">
