@@ -22,7 +22,6 @@ interface classCardProps {
     participant: number;
   };
 }
-// type classCardData = Omit<RouterOutputs["class"]["viewAll"], "count">["items"][number];
 
 enum difficultyColour {
   beginner = "bg-green-500",
@@ -30,7 +29,7 @@ enum difficultyColour {
   advanced = "bg-red-500",
 }
 const ClassCard: React.FC<{ data: classCardProps }> = (props) => {
-  const addParticipant = trpc.class.addParticipant.useMutation({});
+  // const addParticipant = trpc.class.addParticipant.useMutation({});
   const {
     id,
     capacity,
@@ -44,7 +43,7 @@ const ClassCard: React.FC<{ data: classCardProps }> = (props) => {
     _count,
   } = props.data;
   return (
-    <div className="flex flex-col gap-y-2 rounded-md border border-black bg-slate-100 p-1 shadow-lg shadow-gray-400 hover:bg-slate-200">
+    <article className="flex flex-col gap-y-2 border border-black bg-slate-100 p-1">
       <div className="flex items-center gap-x-2">
         <Link href={`/instructor/${hostId}`}>
           <Tooltip text="View Page">
@@ -93,7 +92,7 @@ const ClassCard: React.FC<{ data: classCardProps }> = (props) => {
       >
         View Class
       </Link>
-    </div>
+    </article>
   );
 };
 
