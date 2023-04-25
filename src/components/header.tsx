@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
-import HeaderDropdown from "./headerDropdown";
+import HeaderDropdown from "./HeaderDropdown";
 import { BsArrowBarRight } from "react-icons/bs";
 
 const Header = () => {

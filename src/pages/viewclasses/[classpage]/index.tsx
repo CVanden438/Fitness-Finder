@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { getServerAuthSession } from "../../../server/common/get-server-auth-session";
 import { trpc } from "../../../utils/trpc";
-import ClassComments from "../../../components/classComments";
+import ClassComments from "../../../components/ClassComments";
 import Tooltip from "../../../components/ui/Tooltip";
 import { BiArrowBack } from "react-icons/bi";
 import Link from "next/link";
