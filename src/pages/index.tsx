@@ -9,6 +9,8 @@ import FeaturedInstructors from "../components/landing/FeaturedInstructors";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useRouter } from "next/router";
 import Features from "../components/landing/Features";
+import useScroll from "../hooks/useScroll";
+import Footer from "../components/landing/Footer";
 
 const Home: NextPage = () => {
   //Stripe Test
@@ -18,6 +20,7 @@ const Home: NextPage = () => {
   //   const response = await payment.mutateAsync();
   //   router.push(response as string);
   // };
+  const scrollY = useScroll();
   return (
     <>
       <Head>
@@ -31,11 +34,12 @@ const Home: NextPage = () => {
         }}
         className="overflow-hidden bg-cover bg-fixed bg-center md:bg-top"
       >
-        <div className="backdrop-brightness-50">
+        <div style={{ backdropFilter: `brightness(${50 - scrollY / 20}%)` }}>
           <Hero />
           <Features />
           <FeaturedClasses />
           <FeaturedInstructors />
+          <Footer />
         </div>
       </main>
     </>
