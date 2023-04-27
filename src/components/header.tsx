@@ -10,7 +10,7 @@ const Header = () => {
   const scrollY = useScroll();
   return (
     <header
-      className={`${"bg-black/60"} sticky top-0 z-50 flex h-16 w-full items-center justify-between p-4 font-bold opacity-100 transition-all duration-500`}
+      className={`sticky top-0 z-50 flex h-16 w-full items-center justify-between bg-black/60 p-4 font-bold opacity-100 transition-all duration-500`}
     >
       <h1>
         <Link href="/" className="">
@@ -18,16 +18,30 @@ const Header = () => {
         </Link>
       </h1>
       <nav className="hidden md:block">
-        <Link href="/" className="px-2 hover:underline">
+        <Link
+          href="/"
+          className="border-r-2 border-yellow-400 px-2 hover:underline"
+        >
           Home
         </Link>
-        <Link href="/createclass" className="px-2 hover:underline">
+        <Link
+          href="/createclass"
+          className="border-r-2 border-yellow-400 px-2 hover:underline"
+        >
           Create Class
         </Link>
-        <Link href="/viewclasses" className="px-2 hover:underline">
+        <Link
+          href="/viewclasses"
+          className="border-r-2 border-yellow-400 px-2 hover:underline"
+        >
           View Classes
         </Link>
-        <Link href="/instructor" className="px-2 hover:underline">
+        <Link
+          href="/instructor"
+          className={`${
+            sesh && "border-r-2 border-yellow-400"
+          } px-2 hover:underline`}
+        >
           Instuctors
         </Link>
         {sesh && (
