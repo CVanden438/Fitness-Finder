@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import SearchIcon from "../icons/SearchIcon";
+import XIcon from "../icons/XIcon";
 
 const initialQuery: filters = {};
 
@@ -52,20 +54,25 @@ const SearchBar: React.FC<props> = ({
         onChange={(e) => {
           setSearchInput(e.target.value);
         }}
-        className=" h-[41px] w-[300px] rounded-l-lg border border-black bg-slate-50 pl-2"
+        className=" border-1 h-[41px] w-[300px] rounded-l-lg border border-yellow-400 bg-black pl-2 focus:border-2  focus:border-yellow-500 focus:outline-none"
       />
-      <button>
-        <Image
+      <button className="h-[41px] rounded-r-lg border-t border-r border-b border-yellow-400 bg-slate-700 p-1  hover:bg-slate-800">
+        {/* <Image
           src="/search.svg"
           alt=""
           height={40}
           width={40}
-          className="rounded-r-lg border-t border-r border-b border-black bg-slate-400 p-2 hover:bg-slate-500"
-        />
+          className=" rounded-r-lg border-t border-r border-b border-yellow-500 bg-slate-700 p-2 hover:bg-slate-800"
+        /> */}
+        <SearchIcon height={35} width={35} classNames="" />
       </button>
       {search && (
-        <button onClick={handleCancel} className="absolute translate-x-[110px]">
-          <Image src="/x.svg" height={17} width={17} alt="" />
+        <button
+          onClick={handleCancel}
+          className="absolute translate-x-[110px] "
+        >
+          {/* <Image src="/x.svg" height={17} width={17} alt="" /> */}
+          <XIcon height={30} width={30} />
         </button>
       )}
     </form>

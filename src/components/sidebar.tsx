@@ -47,9 +47,9 @@ const Sidebar: React.FC<propType> = ({
     <div
       className={`${
         isSidebarOpen ? "flex" : "hidden sm:flex"
-      } fixed z-10 h-screen w-full flex-col items-center border-r border-black bg-slate-100 sm:w-[200px]`}
+      } fixed z-10 h-screen w-full flex-col items-center bg-gray-900 sm:w-[200px]`}
     >
-      <p className="mt-2 w-4/5 rounded-lg border border-black bg-slate-300 text-center text-lg font-bold">
+      <p className="mt-2 w-4/5 rounded-lg bg-slate-900 text-center text-lg font-bold outline outline-1">
         Category
       </p>
       <ul className={`mt-2  flex w-full flex-col items-center gap-2`}>
@@ -60,8 +60,10 @@ const Sidebar: React.FC<propType> = ({
               onClick={() => {
                 handleClick("category", c);
               }}
-              className={`w-3/4 rounded-lg text-center hover:cursor-pointer hover:bg-slate-200 ${
-                category === c ? "bg-slate-200" : "bg-slate-50"
+              className={`w-3/4 rounded-lg text-center hover:cursor-pointer hover:outline hover:outline-2 ${
+                category === c
+                  ? "bg-slate-800 outline outline-2"
+                  : "bg-slate-700"
               }`}
             >
               {c}
@@ -69,7 +71,7 @@ const Sidebar: React.FC<propType> = ({
           );
         })}
       </ul>
-      <p className="mt-2 w-4/5 rounded-lg border border-black bg-slate-300 text-center text-lg font-bold">
+      <p className="mt-2 w-4/5 rounded-lg bg-slate-900 text-center text-lg font-bold outline outline-1">
         Difficulty
       </p>
       <ul className={`mt-2 flex w-full flex-col items-center gap-2`}>
@@ -80,8 +82,10 @@ const Sidebar: React.FC<propType> = ({
               onClick={() => {
                 handleClick("difficulty", d);
               }}
-              className={`w-3/4 rounded-lg text-center hover:cursor-pointer hover:bg-slate-200 ${
-                difficulty === d ? "bg-slate-200" : "bg-slate-50"
+              className={`w-3/4 rounded-lg text-center hover:cursor-pointer hover:outline hover:outline-2 ${
+                difficulty === d
+                  ? "bg-slate-800 outline outline-2"
+                  : "bg-slate-700"
               }`}
             >
               {d}
@@ -93,7 +97,7 @@ const Sidebar: React.FC<propType> = ({
         onClick={() => {
           handleClearFilters();
         }}
-        className="mt-4 w-4/5 rounded-lg border border-black bg-slate-400 hover:bg-slate-600 hover:text-white"
+        className="mt-4 w-4/5 rounded-lg bg-slate-900 text-lg font-bold outline outline-2 hover:outline-4"
       >
         Clear Filters
       </button>

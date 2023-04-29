@@ -10,7 +10,7 @@ const Features = () => {
       <h2 className="text-center text-5xl font-bold">Features</h2>
       <div className="h-1 w-full bg-yellow-500"></div>
       <div className="grid grid-cols-1 gap-4 text-2xl md:grid-cols-2 lg:grid-cols-3">
-        <article className="bg-slate-900 p-3 outline outline-2 outline-yellow-500">
+        <article className="bg-gray-900 p-3 outline outline-2 outline-yellow-500">
           <BookIcon height={90} width={90} classNames="m-auto" />
           <p>
             With our app, booking fitness classes has never been easier. You can
@@ -22,7 +22,7 @@ const Features = () => {
             joining classes together!
           </p>
         </article>
-        <article className=" bg-slate-900 p-3 outline outline-2 outline-yellow-500">
+        <article className=" bg-gray-900 p-3 outline outline-2 outline-yellow-500">
           <ListIcon height={90} width={90} classNames="m-auto" />
           <p>
             Setting daily fitness goals and tracking your progress is key to
@@ -36,7 +36,7 @@ const Features = () => {
             achieve your fitness goals and stay motivated along the way.
           </p>
         </article>
-        <article className=" bg-slate-900 p-3 outline outline-2 outline-yellow-500">
+        <article className=" bg-gray-900 p-3 outline outline-2 outline-yellow-500">
           <FriendIcon height={90} width={90} classNames="m-auto" />
           <p>
             Adding friends and building a community of like-minded individuals

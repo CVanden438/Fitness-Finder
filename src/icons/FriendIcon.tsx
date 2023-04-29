@@ -1,11 +1,6 @@
 import React from "react";
 
-type Props = {
-  height?: number;
-  width?: number;
-  classNames?: string;
-};
-const FriendIcon = ({ height, width, classNames }: Props) => {
+const FriendIcon = ({ height = 24, width = 24, classNames }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

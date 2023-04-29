@@ -9,7 +9,7 @@ type instructorCardProps =
 const InstructorCard: React.FC<{ data: instructorCardProps }> = ({ data }) => {
   const { id: instructorId, name, image, bio, _count } = data;
   return (
-    <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-black bg-slate-200 p-2">
+    <article className="flex flex-col items-center justify-center gap-2 bg-gray-900 p-2 outline outline-2">
       <Link href={`/instructor/${instructorId}`} className="relative">
         <img src={image ?? "default"} alt="" className="rounded-full" />
         <Hover text="Go To Page" />
@@ -17,7 +17,7 @@ const InstructorCard: React.FC<{ data: instructorCardProps }> = ({ data }) => {
       <p className="text-lg font-bold">{name}</p>
       <p className="h-24 overflow-y-auto">{bio}</p>
       <p>Total Classes: {_count?.classes}</p>
-    </div>
+    </article>
   );
 };
 
