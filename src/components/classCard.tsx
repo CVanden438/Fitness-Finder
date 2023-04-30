@@ -80,7 +80,7 @@ const ClassCard: React.FC<{ data: classCardProps }> = (props) => {
           {difficulty}
         </p>
       </div>
-      <p className="truncate text-yellow-600">{description}</p>
+      <p className="truncate text-yellow-500">{description}</p>
       <p>Price: {price === 0 ? "FREE" : `£${price}`}</p>
       <div className="flex justify-between">
         <div className="flex items-center gap-1">
