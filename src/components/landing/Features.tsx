@@ -7,7 +7,7 @@ import FriendIcon from "../../icons/FriendIcon";
 const Features = () => {
   return (
     <section className="flex min-h-screen flex-col gap-8 p-5">
-      <h2 className="text-center text-5xl font-bold">Features</h2>
+      <h2 className="text-center text-6xl font-bold">Features</h2>
       <div className="h-1 w-full bg-yellow-500"></div>
       <div className="grid grid-cols-1 gap-4 text-2xl md:grid-cols-2 lg:grid-cols-3">
         <article className="bg-gray-900 p-3 outline outline-2 outline-yellow-500">
