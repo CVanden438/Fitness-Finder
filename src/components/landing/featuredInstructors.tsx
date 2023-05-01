@@ -3,7 +3,7 @@ import { trpc } from "../../utils/trpc";
 import ClassCard from "../ClassCard";
 import ClassCardLoading from "../ClassCardLoading";
 import InstructorCard from "../InstructorCard";
-import ScrollingInstructorList from "../ui/scrollingInstructorList";
+// import ScrollingInstructorList from "../ui/ScrollingInstructorList";
 const FeaturedInstructors = () => {
   const { data: instructors, isLoading } =
     trpc.user.getFeaturedInstructors.useQuery(undefined, {
