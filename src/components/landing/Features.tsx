@@ -31,8 +31,8 @@ const Features = () => {
             and preferences. Whether you want to increase your daily steps, lift
             more weights, or run longer distances, our app makes it easy to set
             and track your goals. You can also monitor your progress over time,
-            making it easier to see how far you've come and identify areas where
-            you can improve. With our app, you'll have all the tools you need to
+            making it easier to see how far youve come and identify areas where
+            you can improve. With our app, youll have all the tools you need to
             achieve your fitness goals and stay motivated along the way.
           </p>
         </article>
@@ -44,7 +44,7 @@ const Features = () => {
             journey. Our fitness app makes it easy to connect with friends and
             share your progress with each other. You can discuss your fitness
             goals and strategies, offer encouragement, and cheer each other on
-            with reactions. Whether you're looking for a workout buddy, someone
+            with reactions. Whether youre looking for a workout buddy, someone
             to share tips with, or just a little extra motivation, our app is
             the perfect platform to connect with others who share your passion
             for fitness. So why not invite some friends to join you on your
