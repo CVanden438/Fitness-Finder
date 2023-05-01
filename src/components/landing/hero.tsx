@@ -3,30 +3,24 @@ import Image from "next/image";
 import Link from "next/link";
 const Hero = () => {
   return (
-    <>
-      <section className=" m-auto -mt-10 flex h-screen w-full flex-col items-center justify-center lg:flex-row">
-        <article className="flex w-full flex-col items-center justify-center gap-4 lg:h-full lg:w-1/2">
-          <h2 className="text-center text-7xl font-bold">Fitness Finder</h2>
-          <p className="w-full text-center text-2xl">
-            Browse thousands of fitness classes from a variety of activities and
-            difiiculty levels to find the perfect class for your needs!
-          </p>
-          <Link
-            href="/viewclasses"
-            className="rounded-full bg-gray-600 pt-2 pb-2 pl-4 pr-4 text-white hover:bg-slate-800"
-          >
-            Browse Now
-          </Link>
-        </article>
-        <Image
-          src={"/heroimage.webp"}
-          alt="heroimage"
-          height={500}
-          width={500}
-          className="hidden lg:block lg:w-1/2"
-        />
-      </section>
-    </>
+    <section
+      // style={{ backgroundImage: `url(./hero-pic.avif)` }}
+      className="relative min-h-screen bg-cover bg-fixed bg-center md:bg-top"
+    >
+      <div className="absolute inset-0 -mt-28 grid place-content-center gap-8">
+        <h2 className="text-center text-7xl font-bold">Fitness Finder</h2>
+        <p className="m-auto w-3/4 text-center text-2xl md:w-1/2">
+          Browse thousands of fitness classes from a variety of activities and
+          difficulty levels to find the perfect class for your needs!
+        </p>
+        <Link
+          href="/viewclasses"
+          className="m-auto w-fit rounded-full bg-slate-800 p-4 text-lg outline outline-2 hover:outline-4"
+        >
+          Browse Now
+        </Link>
+      </div>
+    </section>
   );
 };
 

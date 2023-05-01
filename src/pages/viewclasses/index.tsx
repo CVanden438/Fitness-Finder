@@ -79,7 +79,7 @@ const ClassesPage = () => {
           queryString={queryString}
           route={"/viewclasses"}
         />
-        <div className="mt-4 flex justify-center sm:ml-[200px]">
+        <div className="mt-4 flex justify-center gap-1 sm:ml-[200px]">
           <button
             onClick={() => {
               setUpcoming(false);
@@ -89,8 +89,10 @@ const ClassesPage = () => {
               });
             }}
             className={`${
-              !upcoming ? "bg-slate-400" : "bg-slate-200 hover:bg-slate-300"
-            } rounded-l-full border-r border-black  p-2`}
+              !upcoming
+                ? "bg-slate-800 outline-2"
+                : "bg-slate-600 hover:bg-slate-800"
+            } rounded-l-full p-2 outline  outline-1`}
           >
             Previous Classes
           </button>
@@ -103,8 +105,10 @@ const ClassesPage = () => {
               });
             }}
             className={`${
-              upcoming ? "bg-slate-400" : "bg-slate-200 hover:bg-slate-300"
-            } rounded-r-full p-2 `}
+              upcoming
+                ? "bg-slate-800 outline-2"
+                : "bg-slate-600 hover:bg-slate-800"
+            } rounded-r-full p-2 outline outline-1`}
           >
             Upcoming Classes
           </button>

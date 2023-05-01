@@ -7,3 +7,9 @@ interface filters {
   page?: number;
   price?: number;
 }
+
+interface IconProps {
+  height?: number;
+  width?: number;
+  classNames?: string;
+}

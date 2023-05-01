@@ -15,16 +15,14 @@ const Pagination: React.FC<paginationProps> = ({
   return (
     <div className="flex justify-center gap-4 pb-4">
       <button
-        className="rounded-lg bg-slate-400 pr-2 pl-2"
+        className="rounded-lg bg-slate-800 pr-2 pl-2 outline outline-1 hover:outline-2"
         onClick={() => handlePageChange(1)}
       >
         Prev Page
       </button>
-      <p className="">
-        {page ? page : 1}/{count ? Math.ceil(count / LIMIT) : 1}
-      </p>
+      {page ? page : 1}/{count ? Math.ceil(count / LIMIT) : 1}
       <button
-        className="rounded-lg bg-slate-400 pr-2 pl-2"
+        className="rounded-lg bg-slate-800 pr-2 pl-2 outline outline-1 hover:outline-2"
         onClick={() => handlePageChange(0)}
       >
         Next Page

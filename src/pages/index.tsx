@@ -8,6 +8,9 @@ import FeaturedClasses from "../components/landing/FeaturedClasses";
 import FeaturedInstructors from "../components/landing/FeaturedInstructors";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useRouter } from "next/router";
+import Features from "../components/landing/Features";
+import useScroll from "../hooks/useScroll";
+import Footer from "../components/landing/Footer";
 
 const Home: NextPage = () => {
   //Stripe Test
@@ -17,6 +20,7 @@ const Home: NextPage = () => {
   //   const response = await payment.mutateAsync();
   //   router.push(response as string);
   // };
+  const scrollY = useScroll();
   return (
     <>
       <Head>
@@ -24,10 +28,19 @@ const Home: NextPage = () => {
         <meta name="description" content="Fitness Finder" />
         <link rel="icon" href="/fficon.png" />
       </Head>
-      <main className="mx-auto w-4/5 overflow-hidden bg-white">
-        <Hero />
-        <FeaturedClasses />
-        <FeaturedInstructors />
+      <main
+        style={{
+          backgroundImage: `url(./landingPic.avif)`,
+        }}
+        className="overflow-hidden bg-cover bg-fixed bg-center md:bg-top"
+      >
+        <div style={{ backdropFilter: `brightness(${50 - scrollY / 20}%)` }}>
+          <Hero />
+          <Features />
+          <FeaturedClasses />
+          <FeaturedInstructors />
+          <Footer />
+        </div>
       </main>
     </>
   );

@@ -10,10 +10,11 @@ const FeaturedClasses = () => {
     { refetchOnWindowFocus: false }
   );
   return (
-    <section className="min-h-screen">
-      <h2 className="mb-8 w-full text-center text-6xl font-bold">
+    <section className="flex min-h-screen flex-col gap-8 p-5">
+      <h2 className="w-full text-center text-6xl font-bold">
         Featured Classes
       </h2>
+      <div className="h-1 w-full bg-yellow-500"></div>
       {isLoading ? (
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           <ClassCardLoading />
