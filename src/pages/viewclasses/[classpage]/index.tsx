@@ -10,6 +10,9 @@ import { BiArrowBack } from "react-icons/bi";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
+import PersonIcon from "../../../icons/PersonIcon";
+import CalanderIcon from "../../../icons/CalanderIcon";
+import ClockIcon from "../../../icons/ClockIcon";
 enum difficultyColour {
   beginner = "bg-green-500",
   intermediate = "bg-orange-500",
@@ -86,16 +89,17 @@ const ClassPage: NextPage = () => {
         <meta name="description" content="Fitness Finder" />
         <link rel="icon" href="/fficon.png" />
       </Head>
-      <body className="relative flex justify-center pt-6">
+      <main className="relative flex justify-center pt-6">
         <button
           onClick={() => router.back()}
-          className="absolute left-10 h-12 w-12"
+          className="absolute left-8 top-2 h-12 w-12 outline outline-2"
         >
           <BiArrowBack className="h-12 w-12" />
+          Back
         </button>
-        <div className="mt-16 mb-4 flex w-4/5 flex-col rounded-lg border border-black bg-slate-300 p-6 shadow-lg md:mt-10 md:flex-row">
-          <div className="flex w-full flex-col gap-2 border-b border-black pb-4 md:w-1/2 md:border-b-0 md:border-r-[1px] md:pr-6">
-            <div className="flex gap-6 border-b border-black pb-2">
+        <div className="mt-16 mb-4 flex w-4/5 flex-col bg-slate-900 p-6 outline outline-2 md:mt-10 md:flex-row">
+          <div className="flex w-full flex-col gap-2 border-b border-yellow-500 pb-4 md:w-1/2 md:border-b-0 md:border-r-[1px] md:pr-6">
+            <div className="flex gap-6 border-b border-yellow-500 pb-2">
               <Link href={`/instructor/${host.id}`}>
                 <img
                   src={host.image ? host.image : "default"}
@@ -127,31 +131,34 @@ const ClassPage: NextPage = () => {
               <p>
                 {_count.participant}/{capacity}
               </p>
-              <Image
+              {/* <Image
                 src="/personicon.png"
                 alt="person_icon"
                 // className="h-[20px] w-[20px]"
                 width={16}
                 height={16}
-              />
+              /> */}
+              <PersonIcon />
             </div>
             <div className="flex items-center gap-4">
-              <Image
+              {/* <Image
                 // src="https://cdn-icons-png.flaticon.com/512/55/55281.png"
                 src="/calandericon.png"
                 alt="calander_icon"
                 width={20}
                 height={20}
                 // className="h-[20px] w-[20px] object-contain"
-              />
+              /> */}
+              <CalanderIcon />
               <p>{date}</p>
-              <Image
+              {/* <Image
                 src="/clockicon.png"
                 alt="clock_icon"
                 // className="h-[20px] w-[20px] object-contain"
                 height={20}
                 width={20}
-              />
+              /> */}
+              <ClockIcon />
               <p>{time}</p>
             </div>
             <button
@@ -188,7 +195,7 @@ const ClassPage: NextPage = () => {
           </div>
           <ClassComments classId={id} />
         </div>
-      </body>
+      </main>
     </>
   );
 };

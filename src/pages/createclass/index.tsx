@@ -154,7 +154,7 @@ const FitnessClassForm: NextPage = () => {
       </Head>
       <form onSubmit={handleSubmit} className="mx-auto max-w-md p-6">
         {sesh?.user?.role !== "INSTURUCTOR" && (
-          <p className="mb-4 rounded-md bg-slate-600 p-2 text-center text-white">
+          <p className="mb-4 rounded-md bg-slate-600 p-2 text-center">
             Login to Create a Class
           </p>
         )}
@@ -164,11 +164,11 @@ const FitnessClassForm: NextPage = () => {
           </label>
           <input
             type="string"
-            id="capacity"
+            id="title"
             value={input.title}
             name="title"
             onChange={(event) => handleChange(event)}
-            className={`w-full rounded border py-2 px-3 ${
+            className={`w-full rounded bg-slate-700 py-2 px-3 outline outline-1 focus:outline-2 focus:outline-yellow-500 ${
               errors.title ? "border-red-500" : ""
             }`}
           />
@@ -185,11 +185,11 @@ const FitnessClassForm: NextPage = () => {
           </label>
           <input
             type="string"
-            id="capacity"
+            id="description"
             value={input.description}
             name="description"
             onChange={(event) => handleChange(event)}
-            className={`w-full rounded border py-2 px-3 ${
+            className={`w-full rounded bg-slate-700 py-2 px-3 outline outline-1 focus:outline-2 focus:outline-yellow-500 ${
               errors.description ? "border-red-500" : ""
             }`}
           />
@@ -210,7 +210,7 @@ const FitnessClassForm: NextPage = () => {
             value={input.capacity}
             name="capacity"
             onChange={(event) => handleChange(event)}
-            className={`w-full rounded border py-2 px-3 ${
+            className={`w-full rounded bg-slate-700 py-2 px-3 outline outline-1 focus:outline-2 focus:outline-yellow-500 ${
               errors.capacity ? "border-red-500" : ""
             }`}
           />
@@ -231,7 +231,7 @@ const FitnessClassForm: NextPage = () => {
             value={input.price}
             name="price"
             onChange={(event) => handleChange(event)}
-            className={`w-full rounded border py-2 px-3 ${
+            className={`w-full rounded bg-slate-700 py-2 px-3 outline outline-1 focus:outline-2 focus:outline-yellow-500 ${
               errors.price ? "border-red-500" : ""
             }`}
           />
@@ -249,7 +249,7 @@ const FitnessClassForm: NextPage = () => {
             value={input.category}
             name="category"
             onChange={(event) => handleChange(event)}
-            className={`w-full cursor-pointer appearance-none rounded border py-2 px-3 `}
+            className={`w-full cursor-pointer appearance-none rounded bg-slate-700 py-2 px-3 outline outline-1 focus:outline-2 focus:outline-yellow-500 `}
           >
             <option value="General Fitness">General Fitness</option>
             <option value="Yoga">Yoga</option>
@@ -267,8 +267,8 @@ const FitnessClassForm: NextPage = () => {
               type="button"
               className={`rounded-full px-4 py-2 text-lg font-bold ${
                 input.difficulty === "beginner"
-                  ? "bg-green-500 text-white"
-                  : "bg-gray-200"
+                  ? "bg-green-500 outline outline-2"
+                  : "bg-slate-800"
               }`}
               onClick={() =>
                 setInput({ ...input, difficulty: difficulty.beginner })
@@ -280,8 +280,8 @@ const FitnessClassForm: NextPage = () => {
               type="button"
               className={`rounded-full px-4 py-2 text-lg font-bold ${
                 input.difficulty === "intermediate"
-                  ? "bg-orange-500 text-white"
-                  : "bg-gray-200"
+                  ? "bg-orange-500 outline outline-2"
+                  : "bg-slate-800"
               }`}
               onClick={() =>
                 setInput({ ...input, difficulty: difficulty.intermediate })
@@ -293,8 +293,8 @@ const FitnessClassForm: NextPage = () => {
               type="button"
               className={`rounded-full px-4 py-2 text-lg font-bold ${
                 input.difficulty === "advanced"
-                  ? "bg-red-500 text-white"
-                  : "bg-gray-200"
+                  ? "bg-red-500 outline outline-2"
+                  : "bg-slate-800"
               }`}
               onClick={() =>
                 setInput({ ...input, difficulty: difficulty.advanced })
@@ -315,7 +315,7 @@ const FitnessClassForm: NextPage = () => {
             value={input.date}
             name="date"
             onChange={(event) => handleChange(event)}
-            className={`w-full rounded border py-2 px-3 ${
+            className={`w-full rounded bg-slate-700 py-2 px-3 outline outline-1 focus:outline-2 focus:outline-yellow-500 ${
               errors.date ? "border-red-500" : ""
             }`}
           />
@@ -334,7 +334,7 @@ const FitnessClassForm: NextPage = () => {
             value={input.time}
             name="time"
             onChange={(event) => handleChange(event)}
-            className={`w-full rounded border py-2 px-3 ${
+            className={`w-full rounded bg-slate-700 py-2 px-3 outline outline-1 focus:outline-2 focus:outline-yellow-500 ${
               errors.time ? "border-red-500" : ""
             }`}
           />
@@ -352,7 +352,7 @@ const FitnessClassForm: NextPage = () => {
             value={input.duration}
             name="duration"
             onChange={(event) => handleChange(event)}
-            className={`w-full rounded border py-2 px-3 ${
+            className={`w-full rounded bg-slate-700 py-2 px-3 outline outline-1 focus:outline-2 focus:outline-yellow-500 ${
               errors.duration ? "border-red-500" : ""
             }`}
           />
@@ -369,7 +369,7 @@ const FitnessClassForm: NextPage = () => {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="focus:shadow-outline-blue rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none active:bg-blue-800 disabled:bg-blue-200"
+            className="rounded-full bg-slate-800 px-4 py-2 font-bold outline outline-2 hover:outline-4 disabled:bg-slate-600 disabled:hover:outline-2"
             disabled={submit || !sesh}
           >
             Create Fitness Class

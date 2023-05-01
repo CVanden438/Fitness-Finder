@@ -36,7 +36,7 @@ const ClassComments = ({ classId }: { classId: string }) => {
           onChange={(e) => {
             setInput(e.target.value);
           }}
-          className="w-full rounded-lg bg-slate-50 p-2"
+          className="w-full rounded-lg bg-slate-700 p-2"
         ></textarea>
         <button
           type="submit"
