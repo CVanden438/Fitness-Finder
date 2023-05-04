@@ -50,7 +50,7 @@ const ClassCard: React.FC<{ data: classCardProps }> = (props) => {
       //   backgroundImage:
       //     "url(https://images.unsplash.com/photo-1552196563-55cd4e45efb3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1026&q=80)",
       // }}
-      className="flex flex-col gap-y-4 bg-gray-900 bg-cover p-2 outline outline-1 outline-yellow-500"
+      className="flex flex-col gap-y-4 bg-cover p-2 outline outline-1 outline-yellow-500"
     >
       <div className="flex items-center gap-x-2 ">
         <Link href={`/instructor/${hostId}`}>
