@@ -11,8 +11,8 @@ const Features = () => {
       <div className="h-1 w-full bg-yellow-500"></div>
       <div className="grid grid-cols-1 gap-4 text-2xl md:grid-cols-2 lg:grid-cols-3">
         <article className="p-3 outline outline-2 outline-yellow-500">
-          <BookIcon height={90} width={90} classNames="m-auto" />
-          <p>
+          <BookIcon height={90} width={90} classNames="m-auto mb-8" />
+          <p className="text-justify">
             With our app, booking fitness classes has never been easier. You can
             browse through a wide range of classes and book your spot with just
             a few clicks. Our app also allows you to track your classes, so you
@@ -23,8 +23,8 @@ const Features = () => {
           </p>
         </article>
         <article className=" p-3 outline outline-2 outline-yellow-500">
-          <ListIcon height={90} width={90} classNames="m-auto" />
-          <p>
+          <ListIcon height={90} width={90} classNames="m-auto mb-8" />
+          <p className="text-justify">
             Setting daily fitness goals and tracking your progress is key to
             achieving your overall fitness goals. With the help of our fitness
             app, you can set daily goals that are tailored to your fitness level
@@ -37,8 +37,8 @@ const Features = () => {
           </p>
         </article>
         <article className=" p-3 outline outline-2 outline-yellow-500">
-          <FriendIcon height={90} width={90} classNames="m-auto" />
-          <p>
+          <FriendIcon height={90} width={90} classNames="m-auto mb-8" />
+          <p className="text-justify">
             Adding friends and building a community of like-minded individuals
             is a great way to stay motivated and accountable on your fitness
             journey. Our fitness app makes it easy to connect with friends and
